@@ -1,0 +1,20 @@
+* text=auto
+*.css linguist-vendored
+*.less linguist-vendored
+*.php text
+*.js text
+*.json text
+*.txt text
+*.scss text
+*.jpg binary
+*.png binary
+*.gif binary
+*.gif binary
+*.gif binary
+*.otf binary
+*.eot binary
+*.svg binary
+*.ttf binary
+*.woff binary
+*.woff2 binary
+

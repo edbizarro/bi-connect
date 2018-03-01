@@ -1,0 +1,20 @@
+composer.phar
+composer.lock
+vendor
+build
+
+### OSX template
+.DS_Store
+
+### PHPSTORM
+.idea
+.bundle
+.cache
+
+### Windows template
+# Windows image file caches
+Thumbs.db
+
+public/config
+
+tests

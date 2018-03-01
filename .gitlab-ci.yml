@@ -1,0 +1,12 @@
+before_script:
+  - composer install --no-progress --prefer-dist
+
+php7.1:
+  image: edbizarro/gitlab-ci-pipeline-php:7.1
+  script:
+    - vendor/bin/phpunit --coverage-text --colors=never --stderr
+
+php7.2:
+  image: edbizarro/gitlab-ci-pipeline-php:7.2
+  script:
+    - vendor/bin/phpunit --coverage-text --colors=never --stderr
