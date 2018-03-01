@@ -1,0 +1,12 @@
+version: '3.1'
+
+services:
+  web:
+    image: ambientum/php:7.2-nginx
+    volumes:
+      - .:/var/www/app
+    ports:
+      - 8282:8080
+
+volumes:
+  logs:
