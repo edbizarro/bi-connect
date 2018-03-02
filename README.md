@@ -30,9 +30,11 @@ $googleConnect->setRedirectUrl('registered callback url'); // Se link above
 $googleConnect->getLoginUrl(); // Get google login auth url
 
 // OAuth2 flow
+```
 
 After the OAuth2 flow you can access GA API
 
+```php
 // Retrieve all analytics accounts
 $accounts = $googleConnect->analytics()->getAccounts();
 ```
