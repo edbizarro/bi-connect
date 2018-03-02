@@ -1,0 +1,50 @@
+<p align="center">
+  <h2>BI - Connect</h2>
+</p>
+
+Connect with 3rd party sources to get data.
+
+Supported sources:
+
+* Google Analytics
+* Adobe Analytics
+* Facebook Ads
+* Instagram Ads (WIP)
+* Twitter
+* Comscore (WIP)
+* TailTarget (WIP)
+---
+
+Here are a few examples on how you can use the package:
+
+```php
+use Bi\Connect\Google\GoogleConnect;
+use Bi\Connect\Google\Auth\CredentialsFileAuth;
+
+$googleConnect = new GoogleConnect(
+    new CredentialsFileAuth('path/to/ga/credentials.json) // https://developers.google.com/analytics/devguides/reporting/core/v4/authorization#common_oauth_20_flows
+);
+
+$googleConnect->addScope('analytics');
+$googleConnect->setRedirectUrl('registered callback url'); // Se link above
+$googleConnect->getLoginUrl(); // Get google login auth url
+
+// OAuth2 flow
+
+After the OAuth2 flow you can access GA API
+
+// Retrieve all analytics accounts
+$accounts = $googleConnect->analytics()->getAccounts();
+```
+
+## Installation
+
+You can install the package via composer:
+
+``` bash
+composer require edbizarro/bi-connect
+```
+
+---
+
+[![forthebadge](http://forthebadge.com/images/badges/contains-cat-gifs.svg)](http://forthebadge.com)
