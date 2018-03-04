@@ -11,7 +11,6 @@ Supported sources:
 * Facebook Ads
 * Instagram Ads (WIP)
 * Twitter
-* Comscore (WIP)
 * TailTarget (WIP)
 ---
 
