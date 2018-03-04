@@ -27,7 +27,7 @@ class ComscoreConnect extends ImportSheetConnect
      * @param $file
      * @param array $params
      *
-     * @return Interfaces\ConnectResponseInterface
+     * @return \Bi\Connect\Interfaces\ResponseInterface
      */
     public function getInfosByFile(array $file, array $params)
     {
