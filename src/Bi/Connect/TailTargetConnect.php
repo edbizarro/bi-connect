@@ -47,7 +47,7 @@ class TailTargetConnect extends BaseConnect
      * @param $endPoint
      * @param array $params
      *
-     * @return Interfaces\ConnectResponseInterface
+     * @return \Bi\Connect\Interfaces\ResponseInterface
      */
     public function getMetrics($endPoint, $params = [])
     {
