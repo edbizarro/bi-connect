@@ -13,9 +13,9 @@ Supported sources:
 
 * Google Analytics
 * Adobe Analytics
-* Facebook Ads
+* Facebook Ads (WIP)
 * Instagram Ads (WIP)
-* Twitter
+* Twitter (WIP)
 * TailTarget (WIP)
 ---
 
