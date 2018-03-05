@@ -22,11 +22,11 @@ try {
 } catch (\Bi\Connect\Exceptions\AdobeConnectException $e) {
 }
 
-echo "<h1> Report ID </h1>";
+echo '<h1> Report ID </h1>';
 var_dump($reportId);
 
 if (!is_null($reportId)) {
-    echo "<h1> Report </h1>";
+    echo '<h1> Report </h1>';
     do {
         $report = $adobe->getQueuedReport($reportId);
 
@@ -41,8 +41,7 @@ if (is_null($reportId)) {
     echo 'Error getting the report'.PHP_EOL;
 }
 
-
-echo "<h1> Metrics</h1>";
+echo '<h1> Metrics</h1>';
 
 $metrics = $adobe->getAllMetrics();
 

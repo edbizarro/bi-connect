@@ -60,7 +60,7 @@ trait GuzzleHttpClient
         if (($this->httpClient instanceof GuzzleClient) == false) {
             $this->httpClient = new GuzzleClient(
                 [
-                    'debug' => false,
+                    'debug'           => false,
                     'allow_redirects' => true,
                 ]
             );

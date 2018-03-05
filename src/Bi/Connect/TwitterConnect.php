@@ -2,9 +2,9 @@
 
 namespace Bi\Connect;
 
-use Bi\Connect\Traits\GuzzleHttpClient;
 use Bi\Connect\Base\Oauth2WithoutRedirectConnect;
 use Bi\Connect\Exceptions\TwitterConnectException;
+use Bi\Connect\Traits\GuzzleHttpClient;
 
 /**
  * Class TwitterConnect.
@@ -33,9 +33,9 @@ class TwitterConnect extends Oauth2WithoutRedirectConnect
     }
 
     /**
-     * @return mixed
-     *
      * @throws TwitterConnectException
+     *
+     * @return mixed
      */
     public function auth()
     {
@@ -46,7 +46,7 @@ class TwitterConnect extends Oauth2WithoutRedirectConnect
         $response = $this->post(
             'oauth2/token',
             ['grant_type' => 'client_credentials'],
-            ['auth' => [$this->apiConsumerKey, $this->apiConsumerSecret]]
+            ['auth'       => [$this->apiConsumerKey, $this->apiConsumerSecret]]
         );
 
         $this->apiBearerToken = $response->getBody()->all()['access_token'];
@@ -60,9 +60,9 @@ class TwitterConnect extends Oauth2WithoutRedirectConnect
      * @param array $params
      * @param array $headers
      *
-     * @return ConnectResponse
-     *
      * @throws TwitterConnectException
+     *
+     * @return ConnectResponse
      */
     protected function doRequest($endPoint, $method, $params = [], $headers = [])
     {
@@ -71,7 +71,7 @@ class TwitterConnect extends Oauth2WithoutRedirectConnect
         $defaultHeader = [
             'headers' => [
                 'Content-type' => 'application/x-www-form-urlencoded;charset=UTF-8',
-                'Accept' => 'application/json',
+                'Accept'       => 'application/json',
             ],
         ];
 

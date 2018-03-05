@@ -3,9 +3,9 @@
 namespace Bi\Connect;
 
 use AdobeMarketingCloud\Api\SuiteApi;
-use Bi\Connect\Base\BaseConnect;
 use AdobeMarketingCloud\Client as AdobeClient;
 use AdobeMarketingCloud\HttpClient\Curl as AdobeCurl;
+use Bi\Connect\Base\BaseConnect;
 use Bi\Connect\Exceptions\AdobeConnectException;
 use Carbon\Carbon;
 use Tightenco\Collect\Support\Collection;
@@ -43,9 +43,9 @@ class AdobeConnect extends BaseConnect
      */
     public function auth()
     {
-        $adobeClient = new AdobeClient(new AdobeCurl(array(
+        $adobeClient = new AdobeClient(new AdobeCurl([
             'debug' => false,
-        )));
+        ]));
 
         $adobeClient->authenticate($this->apiUsername, $this->apiPassword);
         $adobeClient->getHttpClient()->setOption('api_version', '1.4');
@@ -65,9 +65,9 @@ class AdobeConnect extends BaseConnect
      * @param array  $segments
      * @param string $granularity
      *
-     * @return array|null
-     *
      * @throws AdobeConnectException
+     *
+     * @return array|null
      */
     public function createReport(
         Carbon $dateFrom,
@@ -83,13 +83,13 @@ class AdobeConnect extends BaseConnect
 
         $defaultOptions = [
             'reportDescription' => [
-                'reportSuiteID' => $this->apiReportSuiteId,
-                'dateFrom' => $dateFrom->format('Y-m-d'),
-                'dateTo' => $dateTo->format('Y-m-d'),
+                'reportSuiteID'   => $this->apiReportSuiteId,
+                'dateFrom'        => $dateFrom->format('Y-m-d'),
+                'dateTo'          => $dateTo->format('Y-m-d'),
                 'dateGranularity' => $granularity,
-                'metrics' => $this->formatApiMetricsOptions($metrics),
-                'elements' => $this->formatApiElementOptions($elements),
-                'segments' => $this->formatApiSegmentsOptions($segments),
+                'metrics'         => $this->formatApiMetricsOptions($metrics),
+                'elements'        => $this->formatApiElementOptions($elements),
+                'segments'        => $this->formatApiSegmentsOptions($segments),
             ],
         ];
 
@@ -142,6 +142,7 @@ class AdobeConnect extends BaseConnect
 
     /**
      * @param array $option
+     *
      * @return array
      */
     protected function formatApiSegmentsOptions(array $option = [])
@@ -152,12 +153,12 @@ class AdobeConnect extends BaseConnect
             if (is_array($item)) {
                 $formattedValue[$iterator]['id'] = $k;
                 $formattedValue[$iterator] = array_merge($formattedValue[$iterator], $item);
-                ++$iterator;
+                $iterator++;
                 continue;
             }
 
             $formattedValue[$iterator]['id'] = $item;
-            ++$iterator;
+            $iterator++;
         }
 
         return $formattedValue;
@@ -178,12 +179,12 @@ class AdobeConnect extends BaseConnect
             if (is_array($item)) {
                 $formattedValue[$iterator]['id'] = $k;
                 $formattedValue[$iterator] = array_merge($formattedValue[$iterator], $item);
-                ++$iterator;
+                $iterator++;
                 continue;
             }
 
             $formattedValue[$iterator]['id'] = $item;
-            ++$iterator;
+            $iterator++;
         }
 
         return $formattedValue;
@@ -192,9 +193,9 @@ class AdobeConnect extends BaseConnect
     /**
      * @param $response
      *
-     * @return ConnectResponse
-     *
      * @throws AdobeConnectException
+     *
+     * @return ConnectResponse
      */
     protected function formatResponse($response)
     {
@@ -242,9 +243,9 @@ class AdobeConnect extends BaseConnect
      * @param $response
      * @param $header
      *
-     * @return array
-     *
      * @throws AdobeConnectException
+     *
+     * @return array
      */
     protected function formatResponseBody($response, $header, $fullResponse)
     {
@@ -324,7 +325,7 @@ class AdobeConnect extends BaseConnect
                 );
             }
 
-            ++$bodyKey;
+            $bodyKey++;
         }
 
         return $body;
@@ -424,9 +425,9 @@ class AdobeConnect extends BaseConnect
      *
      * @param int $reportId
      *
-     * @return ConnectResponse
-     *
      * @throws AdobeConnectException
+     *
+     * @return ConnectResponse
      */
     public function getQueuedReport($reportId)
     {
