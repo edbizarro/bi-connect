@@ -180,7 +180,7 @@ class GoogleAnalyticsService extends \Google_Service_Analytics
      *
      * @return array
      */
-    protected function extractHeaders($headers = array())
+    protected function extractHeaders($headers = [])
     {
         $originalHeaders = $headers['modelData']['columnHeaders'];
         $formattedHeaders = [];

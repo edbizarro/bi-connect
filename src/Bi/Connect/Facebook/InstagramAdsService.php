@@ -26,9 +26,9 @@ class InstagramAdsService
      * @param $endPoint
      * @param string $method
      *
-     * @return array
-     *
      * @throws \Facebook\Exceptions\FacebookSDKException
+     *
+     * @return array
      */
     protected function doRequest($endPoint, $method = 'GET')
     {

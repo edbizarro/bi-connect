@@ -6,7 +6,7 @@ use Bi\Connect\Facebook\FacebookConnect;
 
 $fb = new FacebookConnect(
     [
-        'app_id' => 'APP_ID',
+        'app_id'     => 'APP_ID',
         'app_secret' => 'APP_SECRET',
     ]
 );
@@ -26,15 +26,15 @@ if (isset($_GET['code'])) {
 }
 
 if ($_SESSION['access_token'] != '') {
-    echo('<h1> Access Token </h1>');
+    echo '<h1> Access Token </h1>';
     var_dump($_SESSION['access_token']);
     $fb->setAccessToken($_SESSION['access_token']);
 
-    echo('<h1> User logged in </h1>');
+    echo '<h1> User logged in </h1>';
     $user = $fb->instagramAds()->get('/me');
     var_dump($user->getBody()->all());
 
-    echo('<h1> Accounts </h1>');
+    echo '<h1> Accounts </h1>';
     $accounts = $fb->instagramAds()->getAccounts($user->getBody()->all()['id']);
 
     foreach ($accounts->getBody()->all() as $account) {

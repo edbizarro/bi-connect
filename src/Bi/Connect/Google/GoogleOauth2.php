@@ -39,34 +39,34 @@ class GoogleOauth2 extends Oauth2Connect
     const SCOPE_YOUTUBE = 'https://gdata.youtube.com';
 
     protected $googleScopes = [
-        'analytics' => self::SCOPE_ANALYTICS,
-        'base' => self::SCOPE_BASE,
-        'buzz' => self::SCOPE_BUZZ,
-        'book' => self::SCOPE_BOOK,
-        'blogger' => self::SCOPE_BLOGGER,
-        'calendar' => self::SCOPE_CALENDAR,
-        'contacts' => self::SCOPE_CONTACTS,
-        'chrome' => self::SCOPE_CHROME,
-        'documents' => self::SCOPE_DOCUMENTS,
-        'drive' => self::SCOPE_DRIVE,
-        'finance' => self::SCOPE_FINANCE,
-        'gmail' => self::SCOPE_GMAIL,
-        'health' => self::SCOPE_HEALTH,
-        'h9' => self::SCOPE_H9,
-        'maps' => self::SCOPE_MAPS,
-        'moderator' => self::SCOPE_MODERATOR,
-        'opensocial' => self::SCOPE_OPENSOCIAL,
-        'orkut' => self::SCOPE_ORKUT,
-        'plus' => self::SCOPE_PLUS,
-        'picasa' => self::SCOPE_PICASA,
-        'sidewiki' => self::SCOPE_SIDEWIKI,
-        'sites' => self::SCOPE_SITES,
+        'analytics'    => self::SCOPE_ANALYTICS,
+        'base'         => self::SCOPE_BASE,
+        'buzz'         => self::SCOPE_BUZZ,
+        'book'         => self::SCOPE_BOOK,
+        'blogger'      => self::SCOPE_BLOGGER,
+        'calendar'     => self::SCOPE_CALENDAR,
+        'contacts'     => self::SCOPE_CONTACTS,
+        'chrome'       => self::SCOPE_CHROME,
+        'documents'    => self::SCOPE_DOCUMENTS,
+        'drive'        => self::SCOPE_DRIVE,
+        'finance'      => self::SCOPE_FINANCE,
+        'gmail'        => self::SCOPE_GMAIL,
+        'health'       => self::SCOPE_HEALTH,
+        'h9'           => self::SCOPE_H9,
+        'maps'         => self::SCOPE_MAPS,
+        'moderator'    => self::SCOPE_MODERATOR,
+        'opensocial'   => self::SCOPE_OPENSOCIAL,
+        'orkut'        => self::SCOPE_ORKUT,
+        'plus'         => self::SCOPE_PLUS,
+        'picasa'       => self::SCOPE_PICASA,
+        'sidewiki'     => self::SCOPE_SIDEWIKI,
+        'sites'        => self::SCOPE_SITES,
         'spreadsheets' => self::SCOPE_SREADSHEETS,
-        'tasks' => self::SCOPE_TASKS,
-        'shortener' => self::SCOPE_SHORTENER,
-        'wave' => self::SCOPE_WAVE,
-        'webmaster' => self::SCOPE_WEBMASTER,
-        'youtube' => self::SCOPE_YOUTUBE,
+        'tasks'        => self::SCOPE_TASKS,
+        'shortener'    => self::SCOPE_SHORTENER,
+        'wave'         => self::SCOPE_WAVE,
+        'webmaster'    => self::SCOPE_WEBMASTER,
+        'youtube'      => self::SCOPE_YOUTUBE,
     ];
 
     /**
@@ -114,9 +114,6 @@ class GoogleOauth2 extends Oauth2Connect
         return $this->googleClient->createAuthUrl();
     }
 
-    /**
-     *
-     */
     protected function addScopesToClient()
     {
         if (is_string($this->scope) && isset($this->googleScopes[$this->scope])) {

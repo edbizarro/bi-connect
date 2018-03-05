@@ -2,8 +2,8 @@
 
 namespace Bi\Connect;
 
-use Bi\Connect\Traits\GuzzleHttpClient;
 use Bi\Connect\Base\BaseConnect;
+use Bi\Connect\Traits\GuzzleHttpClient;
 
 /**
  * Class TailTargetConnect.
@@ -54,15 +54,15 @@ class TailTargetConnect extends BaseConnect
         $defaultOptions = [
             'credential' => [
                 'applicationId' => $this->apiAppId,
-                'username' => $this->apiUsername,
-                'utcTimestamp' => gmdate('U'),
+                'username'      => $this->apiUsername,
+                'utcTimestamp'  => gmdate('U'),
             ],
         ];
 
         $defaultHeader = [
             'headers' => [
                 'Content-type' => 'application/json',
-                'Accept' => 'application/json',
+                'Accept'       => 'application/json',
             ],
         ];
 

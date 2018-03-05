@@ -3,9 +3,9 @@
 namespace Bi\Connect\Facebook;
 
 use Bi\Connect\Base\Oauth2Connect;
-use Facebook\Facebook;
-use Bi\Connect\Exceptions\FacebookException;
 use Bi\Connect\ConnectResponse;
+use Bi\Connect\Exceptions\FacebookException;
+use Facebook\Facebook;
 
 /**
  * Class FacebookConnect.
@@ -30,14 +30,14 @@ class FacebookConnect extends Oauth2Connect
     public function __construct(array $config = [])
     {
         $config = array_merge([
-            'app_id' => '',
-            'app_secret' => '',
-            'default_graph_version' => Facebook::DEFAULT_GRAPH_VERSION,
-            'enable_beta_mode' => false,
-            'http_client_handler' => null,
-            'persistent_data_handler' => null,
+            'app_id'                         => '',
+            'app_secret'                     => '',
+            'default_graph_version'          => Facebook::DEFAULT_GRAPH_VERSION,
+            'enable_beta_mode'               => false,
+            'http_client_handler'            => null,
+            'persistent_data_handler'        => null,
             'pseudo_random_string_generator' => null,
-            'url_detection_handler' => null,
+            'url_detection_handler'          => null,
         ], $config);
 
         if (session_status() == PHP_SESSION_NONE) {
@@ -61,9 +61,9 @@ class FacebookConnect extends Oauth2Connect
      *
      * @param string $code
      *
-     * @return array
-     *
      * @throws FacebookException
+     *
+     * @return array
      */
     public function getAccess($code)
     {
@@ -102,9 +102,9 @@ class FacebookConnect extends Oauth2Connect
      * @param null $scope
      * @param null $display
      *
-     * @return string
-     *
      * @throws FacebookException
+     *
+     * @return string
      */
     public function getLoginUrl($scope = null, $display = null)
     {

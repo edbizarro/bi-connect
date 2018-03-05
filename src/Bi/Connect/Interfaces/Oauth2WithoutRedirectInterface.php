@@ -8,5 +8,6 @@ namespace Bi\Connect\Interfaces;
 interface Oauth2WithoutRedirectInterface
 {
     public function auth();
+
     public function getAccessToken();
 }
