@@ -2,6 +2,7 @@
   <h2>BI - Connect</h2>
 </p>
 Connect with 3rd party sources to get data.
+
 ---
 
 <p align="center">
