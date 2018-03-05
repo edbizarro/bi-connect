@@ -1,10 +1,12 @@
 <p align="center">
   <h2>BI - Connect</h2>
 </p>
+Connect with 3rd party sources to get data.
+---
+
 <p align="center">
     <a href="https://styleci.io/repos/123524313"><img src="https://styleci.io/repos/123524313/shield?branch=master" alt="StyleCI"></a>
 </p>
-Connect with 3rd party sources to get data.
 
 Supported sources:
 
