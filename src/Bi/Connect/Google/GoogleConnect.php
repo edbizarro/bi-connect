@@ -3,17 +3,13 @@
 namespace Bi\Connect\Google;
 
 use Bi\Connect\Google\Auth\GoogleAuth;
+use Google_Client;
 
 /**
  * Class GoogleConnect.
  */
 class GoogleConnect extends GoogleOauth2
 {
-    /**
-     * @var \Google_Client
-     */
-    protected $googleClient;
-
     /**
      * @var GoogleAnalyticsService
      */
@@ -28,11 +24,13 @@ class GoogleConnect extends GoogleOauth2
      * GoogleConnect constructor.
      *
      * @param GoogleAuth $authDriver
+     *
+     * @throws \Google_Exception
      */
     public function __construct(GoogleAuth $authDriver)
     {
-        if (($this->googleClient instanceof \Google_Client) == false) {
-            $this->googleClient = new \Google_Client();
+        if (($this->googleClient instanceof Google_Client) === false) {
+            $this->googleClient = new Google_Client();
         }
 
         if (($this->googleAnalyticsService instanceof GoogleAnalyticsService) == false) {
@@ -49,7 +47,7 @@ class GoogleConnect extends GoogleOauth2
     /**
      * @return GoogleAnalyticsService
      */
-    public function analytics()
+    public function analytics(): GoogleAnalyticsService
     {
         return $this->googleAnalyticsService;
     }
@@ -57,7 +55,7 @@ class GoogleConnect extends GoogleOauth2
     /**
      * @return GoogleWebmastersService
      */
-    public function webmaster()
+    public function webmaster(): GoogleWebmastersService
     {
         return $this->googleWebmastersService;
     }
