@@ -11,7 +11,7 @@ $fb = new FacebookConnect(
     ]
 );
 
-if (!isset($_GET['code'])) {
+if (! isset($_GET['code'])) {
     $fb->setRedirectUrl('REDIRECT_URL');
     $redirectUrl = $fb->getLoginUrl('ads_management');
 

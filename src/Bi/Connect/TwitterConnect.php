@@ -2,9 +2,9 @@
 
 namespace Bi\Connect;
 
+use Bi\Connect\Traits\GuzzleHttpClient;
 use Bi\Connect\Base\Oauth2WithoutRedirectConnect;
 use Bi\Connect\Exceptions\TwitterConnectException;
-use Bi\Connect\Traits\GuzzleHttpClient;
 
 /**
  * Class TwitterConnect.

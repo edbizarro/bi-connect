@@ -2,9 +2,9 @@
 
 namespace Bi\Connect\Google;
 
-use Bi\Connect\ConnectResponse;
 use Carbon\Carbon;
 use Google_Service_Analytics;
+use Bi\Connect\ConnectResponse;
 use Google_Service_Analytics_GaData;
 
 /**

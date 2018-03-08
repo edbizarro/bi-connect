@@ -2,9 +2,9 @@
 
 namespace Bi\Connect;
 
-use Bi\Connect\Interfaces\ResponseInterface;
 use Bi\Connect\Traits\ResponseTrait;
 use Tightenco\Collect\Support\Collection;
+use Bi\Connect\Interfaces\ResponseInterface;
 
 /**
  * Class ConnectResponse.
