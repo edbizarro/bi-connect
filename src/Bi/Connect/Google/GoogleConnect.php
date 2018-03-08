@@ -33,11 +33,11 @@ class GoogleConnect extends GoogleOauth2
             $this->googleClient = new Google_Client();
         }
 
-        if (($this->googleAnalyticsService instanceof GoogleAnalyticsService) == false) {
+        if (($this->googleAnalyticsService instanceof GoogleAnalyticsService) === false) {
             $this->googleAnalyticsService = new GoogleAnalyticsService($this->googleClient);
         }
 
-        if (($this->googleWebmastersService instanceof GoogleWebmastersService) == false) {
+        if (($this->googleWebmastersService instanceof GoogleWebmastersService) === false) {
             $this->googleWebmastersService = new GoogleWebmastersService($this->googleClient);
         }
 
