@@ -150,7 +150,7 @@ class AdobeConnect extends BaseConnect
         $formattedValue = [];
         $iterator = 0;
         foreach ($option as $k => $item) {
-            if (is_array($item)) {
+            if (\is_array($item)) {
                 $formattedValue[$iterator]['id'] = $k;
                 $formattedValue[$iterator] = array_merge($formattedValue[$iterator], $item);
                 $iterator++;
@@ -176,7 +176,7 @@ class AdobeConnect extends BaseConnect
         $formattedValue = [];
         $iterator = 0;
         foreach ($option as $k => $item) {
-            if (is_array($item)) {
+            if (\is_array($item)) {
                 $formattedValue[$iterator]['id'] = $k;
                 $formattedValue[$iterator] = array_merge($formattedValue[$iterator], $item);
                 $iterator++;

@@ -118,13 +118,13 @@ class GoogleAnalyticsService extends Google_Service_Analytics
     }
 
     /**
-     * @param array $params
+     * @param mixed $params
      *
      * @return string
      */
-    protected function formatQueryParams($params = []): string
+    protected function formatQueryParams($params = null): string
     {
-        if (is_array($params) === false) {
+        if (\is_array($params) === false) {
             return 'ga:'.$params;
         }
 
@@ -142,20 +142,20 @@ class GoogleAnalyticsService extends Google_Service_Analytics
     }
 
     /**
-     * @param array $params
+     * @param mixed $params
      *
      * @return mixed
      */
-    protected function formatOptParams($params = [])
+    protected function formatOptParams($params = null)
     {
         if (isset($params['dimensions'])) {
-            if (is_array($params['dimensions']) == false) {
-                if (strpos($params['dimensions'], 'ga:') === false) {
-                    $params['dimensions'] = 'ga:'.$params['dimensions'];
-                }
+            if (\is_array($params['dimensions']) === false
+                && \strpos($params['dimensions'], 'ga:') === false
+            ) {
+                $params['dimensions'] = 'ga:'.$params['dimensions'];
             }
 
-            if (is_array($params['dimensions'])) {
+            if (\is_array($params['dimensions'])) {
                 foreach ($params['dimensions'] as $k => $param) {
                     if (strpos($param, 'ga:') !== false) {
                         $params['dimensions'][$k] = $param;

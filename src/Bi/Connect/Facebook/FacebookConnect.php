@@ -141,7 +141,7 @@ class FacebookConnect extends Oauth2Connect
     {
         $body = $response;
 
-        if (is_array($body) == false) {
+        if (\is_array($body) == false) {
             $body = json_decode($response, true);
             if ((json_last_error() == JSON_ERROR_NONE) === false) {
                 $body = $response;

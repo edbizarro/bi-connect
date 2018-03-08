@@ -122,7 +122,7 @@ class GoogleOauth2 extends Oauth2Connect
             return true;
         }
 
-        if (is_array($this->scope)) {
+        if (\is_array($this->scope)) {
             foreach ($this->scope as $key) {
                 if (is_string($key) && isset($this->googleScopes[$key])) {
                     $this->googleClient->addScope($this->googleScopes[$key]);
