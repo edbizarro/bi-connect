@@ -4,16 +4,17 @@ namespace Bi\Connect\Google;
 
 use Bi\Connect\ConnectResponse;
 use Carbon\Carbon;
+use Google_Service_Analytics;
 
 /**
  * Class GoogleAnalyticsService.
  */
-class GoogleAnalyticsService extends \Google_Service_Analytics
+class GoogleAnalyticsService extends Google_Service_Analytics
 {
     /**
      * @return ConnectResponse
      */
-    public function getAccounts()
+    public function getAccounts(): ConnectResponse
     {
         $response = $this->management_accounts->listManagementAccounts()->getItems();
 
@@ -25,7 +26,7 @@ class GoogleAnalyticsService extends \Google_Service_Analytics
      *
      * @return ConnectResponse
      */
-    public function getProperties($accountId = '~all')
+    public function getProperties($accountId = '~all'): ConnectResponse
     {
         $properties = $this->management_webproperties->listManagementWebproperties($accountId)->getItems();
 
@@ -38,7 +39,7 @@ class GoogleAnalyticsService extends \Google_Service_Analytics
      *
      * @return ConnectResponse
      */
-    public function getProfiles($accountId = '~all', $propertyId = '~all')
+    public function getProfiles($accountId = '~all', $propertyId = '~all'): ConnectResponse
     {
         $profiles = $this->management_profiles->listManagementProfiles($accountId, $propertyId)->getItems();
 
@@ -60,7 +61,7 @@ class GoogleAnalyticsService extends \Google_Service_Analytics
         Carbon $endDate,
         $metrics,
         $optOptions = []
-    ) {
+    ): ConnectResponse {
         $response = $this->data_ga->get(
             $this->formatQueryParams($gaId),
             $startDate->format('Y-m-d'),
@@ -77,7 +78,7 @@ class GoogleAnalyticsService extends \Google_Service_Analytics
      *
      * @return ConnectResponse
      */
-    protected function formatSimpleResponse($originalResponse)
+    protected function formatSimpleResponse($originalResponse): ConnectResponse
     {
         $body = [];
 
@@ -100,7 +101,7 @@ class GoogleAnalyticsService extends \Google_Service_Analytics
      *
      * @return ConnectResponse
      */
-    protected function formatQueryResponse($queryResponse)
+    protected function formatQueryResponse($queryResponse): ConnectResponse
     {
         $resultadoFormatado = [];
 
@@ -127,9 +128,9 @@ class GoogleAnalyticsService extends \Google_Service_Analytics
      *
      * @return string
      */
-    protected function formatQueryParams($params = [])
+    protected function formatQueryParams($params = []): string
     {
-        if (is_array($params) == false) {
+        if (is_array($params) === false) {
             return 'ga:'.$params;
         }
 
@@ -180,9 +181,9 @@ class GoogleAnalyticsService extends \Google_Service_Analytics
      *
      * @return array
      */
-    protected function extractHeaders($headers = [])
+    protected function extractHeaders($headers = []): array
     {
-        $originalHeaders = $headers['modelData']['columnHeaders'];
+        $originalHeaders = $headers['columnHeaders'];
         $formattedHeaders = [];
         foreach ($originalHeaders as $item) {
             $formattedHeaders[] = str_replace('ga:', '', $item['name']);
@@ -196,7 +197,7 @@ class GoogleAnalyticsService extends \Google_Service_Analytics
      *
      * @return string
      */
-    public function formatQueryReturnDate($returnedDate)
+    public function formatQueryReturnDate($returnedDate): string
     {
         return substr($returnedDate, 0, 4).'-'.substr($returnedDate, 4, 2).'-'.substr($returnedDate, 6, 2);
     }
