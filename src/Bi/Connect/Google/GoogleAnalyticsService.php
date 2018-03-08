@@ -108,11 +108,11 @@ class GoogleAnalyticsService extends Google_Service_Analytics
 
         $result = collect($queryResponse->rows)->transform(function ($item) use ($responseHeaders) {
             return array_combine($responseHeaders, $item);
-        })->all();
+        });
 
         return new ConnectResponse(
             $responseHeaders,
-            $result,
+            $result->all(),
             $queryResponse
         );
     }
