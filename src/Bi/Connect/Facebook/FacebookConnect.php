@@ -2,10 +2,10 @@
 
 namespace Bi\Connect\Facebook;
 
-use Bi\Connect\Base\Oauth2Connect;
-use Bi\Connect\ConnectResponse;
-use Bi\Connect\Exceptions\FacebookException;
 use Facebook\Facebook;
+use Bi\Connect\ConnectResponse;
+use Bi\Connect\Base\Oauth2Connect;
+use Bi\Connect\Exceptions\FacebookException;
 
 /**
  * Class FacebookConnect.

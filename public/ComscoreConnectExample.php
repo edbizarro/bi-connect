@@ -11,7 +11,7 @@ $sheet_location_server = '/examples/sheets';
 $valid_file = false;
 if ($_FILES) {
     if ($_FILES['sheet']['name']) {
-        if (!$_FILES['sheet']['error']) {
+        if (! $_FILES['sheet']['error']) {
             $new_file_name = strtolower($_FILES['sheet']['tmp_name']);
             if ($_FILES['sheet']['size'] > 102400000) {
                 $valid_file = false;

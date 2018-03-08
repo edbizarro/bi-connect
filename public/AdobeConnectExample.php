@@ -2,8 +2,8 @@
 
 include dirname(__DIR__).'/vendor/autoload.php';
 
-use Bi\Connect\AdobeConnect;
 use Carbon\Carbon;
+use Bi\Connect\AdobeConnect;
 
 $adobe = new AdobeConnect(
     'username',
@@ -25,12 +25,12 @@ try {
 echo '<h1> Report ID </h1>';
 var_dump($reportId);
 
-if (!is_null($reportId)) {
+if (! is_null($reportId)) {
     echo '<h1> Report </h1>';
     do {
         $report = $adobe->getQueuedReport($reportId);
 
-        if (!isset($report->getRawResponse()['error'])) {
+        if (! isset($report->getRawResponse()['error'])) {
             print_r($report->getBody()->all());
         }
         sleep(2);
