@@ -5,6 +5,7 @@ namespace Bi\Connect\Google;
 use Bi\Connect\ConnectResponse;
 use Carbon\Carbon;
 use Google_Service_Analytics;
+use Google_Service_Analytics_GaData;
 
 /**
  * Class GoogleAnalyticsService.
@@ -101,24 +102,17 @@ class GoogleAnalyticsService extends Google_Service_Analytics
      *
      * @return ConnectResponse
      */
-    protected function formatQueryResponse($queryResponse): ConnectResponse
+    protected function formatQueryResponse(Google_Service_Analytics_GaData $queryResponse): ConnectResponse
     {
-        $resultadoFormatado = [];
+        $responseHeaders = $this->extractHeaders($queryResponse);
 
-        $cabecalhosResposta = $this->extractHeaders($queryResponse);
-
-        foreach ($queryResponse['rows'] as $kl => $linha) {
-            foreach ($linha as $k => $valores) {
-                if ($cabecalhosResposta[$k] == 'date') {
-                    $valores = $this->formatQueryReturnDate($valores);
-                }
-                $resultadoFormatado[$kl][$cabecalhosResposta[$k]] = $valores;
-            }
-        }
+        $result = collect($queryResponse->rows)->transform(function ($item) use ($responseHeaders) {
+            return array_combine($responseHeaders, $item);
+        })->all();
 
         return new ConnectResponse(
-            $cabecalhosResposta,
-            $resultadoFormatado,
+            $responseHeaders,
+            $result,
             $queryResponse
         );
     }
