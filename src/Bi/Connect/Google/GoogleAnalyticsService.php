@@ -2,7 +2,6 @@
 
 namespace Bi\Connect\Google;
 
-use Carbon\Carbon;
 use Google_Service_Analytics;
 use Bi\Connect\ConnectResponse;
 use Google_Service_Analytics_GaData;
@@ -62,7 +61,7 @@ class GoogleAnalyticsService extends Google_Service_Analytics
     }
 
     /**
-     * Returns Analytics data for a view (profile). (ga.get)
+     * Returns Analytics data for a view (profile). (ga.get).
      *
      * @param string $gaId Unique table ID for retrieving Analytics data. Table ID is
      * of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
@@ -125,6 +124,7 @@ class GoogleAnalyticsService extends Google_Service_Analytics
             collect($originalResponse)->transform(function ($item, $key) {
                 $item[$key]['id'] = $item->id;
                 $item[$key]['name'] = $item->name;
+
                 return $item;
             })->all(),
             $originalResponse
