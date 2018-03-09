@@ -5,6 +5,7 @@ namespace Bi\Connect\Google;
 use Google_Service_Analytics;
 use Bi\Connect\ConnectResponse;
 use Google_Service_Analytics_GaData;
+use Tightenco\Collect\Support\Collection;
 
 /**
  * Class GoogleAnalyticsService.
@@ -12,9 +13,9 @@ use Google_Service_Analytics_GaData;
 class GoogleAnalyticsService extends Google_Service_Analytics
 {
     /**
-     * @return ConnectResponse
+     * @return Collection
      */
-    public function getAccounts(): ConnectResponse
+    public function getAccounts(): Collection
     {
         return $this->formatSimpleResponse(
             $this->management_accounts->listManagementAccounts()->getItems()
@@ -24,9 +25,9 @@ class GoogleAnalyticsService extends Google_Service_Analytics
     /**
      * @param string|int $accountId
      *
-     * @return ConnectResponse
+     * @return Collection
      */
-    public function getProperties($accountId = '~all'): ConnectResponse
+    public function getProperties($accountId = '~all'): Collection
     {
         return $this->formatSimpleResponse(
             $this->management_webproperties->listManagementWebproperties($accountId)->getItems()
@@ -37,9 +38,9 @@ class GoogleAnalyticsService extends Google_Service_Analytics
      * @param $accountId
      * @param $propertyId
      *
-     * @return ConnectResponse
+     * @return Collection
      */
-    public function getProfiles($accountId = '~all', $propertyId = '~all'): ConnectResponse
+    public function getProfiles($accountId = '~all', $propertyId = '~all'): Collection
     {
         return $this->formatSimpleResponse(
             $this->management_profiles->listManagementProfiles($accountId, $propertyId)->getItems()
@@ -51,9 +52,9 @@ class GoogleAnalyticsService extends Google_Service_Analytics
      * @param string $propertyId
      * @param string $profileId
      *
-     * @return ConnectResponse
+     * @return Collection
      */
-    public function getGoals($accountId = '~all', $propertyId = '~all', $profileId = '~all'): ConnectResponse
+    public function getGoals($accountId = '~all', $propertyId = '~all', $profileId = '~all'): Collection
     {
         return $this->formatSimpleResponse(
             $this->management_goals->listManagementGoals($accountId, $propertyId, $profileId)->getItems()
@@ -115,11 +116,11 @@ class GoogleAnalyticsService extends Google_Service_Analytics
     /**
      * @param $originalResponse
      *
-     * @return ConnectResponse
+     * @return Collection
      */
-    protected function formatSimpleResponse($originalResponse): ConnectResponse
+    protected function formatSimpleResponse($originalResponse): Collection
     {
-        return new ConnectResponse(
+        return (new ConnectResponse(
             [],
             collect($originalResponse)->transform(function ($item, $key) {
                 $item[$key]['id'] = $item->id;
@@ -128,7 +129,7 @@ class GoogleAnalyticsService extends Google_Service_Analytics
                 return $item;
             })->all(),
             $originalResponse
-        );
+        ))->getBody();
     }
 
     /**
@@ -136,9 +137,9 @@ class GoogleAnalyticsService extends Google_Service_Analytics
      *
      * @param $queryResponse
      *
-     * @return ConnectResponse
+     * @return Collection
      */
-    protected function formatQueryResponse(Google_Service_Analytics_GaData $queryResponse): ConnectResponse
+    protected function formatQueryResponse(Google_Service_Analytics_GaData $queryResponse): Collection
     {
         $responseHeaders = $this->extractHeaders($queryResponse);
 
@@ -146,11 +147,11 @@ class GoogleAnalyticsService extends Google_Service_Analytics
             return array_combine($responseHeaders, $item);
         });
 
-        return new ConnectResponse(
+        return (new ConnectResponse(
             $responseHeaders,
             $result->all(),
             $queryResponse
-        );
+        ))->getBody();
     }
 
     /**
