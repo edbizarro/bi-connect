@@ -48,6 +48,20 @@ class GoogleAnalyticsService extends Google_Service_Analytics
     }
 
     /**
+     * @param string $accountId
+     * @param string $propertyId
+     * @param string $profileId
+     *
+     * @return ConnectResponse
+     */
+    public function getGoals($accountId = '~all', $propertyId = '~all', $profileId = '~all'): ConnectResponse
+    {
+        return $this->formatSimpleResponse(
+            $this->management_goals->listManagementGoals($accountId, $propertyId, $profileId)->getItems()
+        );
+    }
+
+    /**
      * @param $gaId
      * @param Carbon $startDate
      * @param Carbon $endDate
