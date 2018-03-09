@@ -17,9 +17,9 @@ class GoogleAnalyticsService extends Google_Service_Analytics
      */
     public function getAccounts(): ConnectResponse
     {
-        $response = $this->management_accounts->listManagementAccounts()->getItems();
-
-        return $this->formatSimpleResponse($response);
+        return $this->formatSimpleResponse(
+            $this->management_accounts->listManagementAccounts()->getItems()
+        );
     }
 
     /**
@@ -29,9 +29,9 @@ class GoogleAnalyticsService extends Google_Service_Analytics
      */
     public function getProperties($accountId = '~all'): ConnectResponse
     {
-        $properties = $this->management_webproperties->listManagementWebproperties($accountId)->getItems();
-
-        return $this->formatSimpleResponse($properties);
+        return $this->formatSimpleResponse(
+            $this->management_webproperties->listManagementWebproperties($accountId)->getItems()
+        );
     }
 
     /**
@@ -42,9 +42,9 @@ class GoogleAnalyticsService extends Google_Service_Analytics
      */
     public function getProfiles($accountId = '~all', $propertyId = '~all'): ConnectResponse
     {
-        $profiles = $this->management_profiles->listManagementProfiles($accountId, $propertyId)->getItems();
-
-        return $this->formatSimpleResponse($profiles);
+        return $this->formatSimpleResponse(
+            $this->management_profiles->listManagementProfiles($accountId, $propertyId)->getItems()
+        );
     }
 
     /**
