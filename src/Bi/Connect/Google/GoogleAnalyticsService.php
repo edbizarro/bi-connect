@@ -3,9 +3,11 @@
 namespace Bi\Connect\Google;
 
 use Carbon\Carbon;
+use Google_Collection;
 use Google_Service_Analytics;
 use Bi\Connect\ConnectResponse;
 use Google_Service_Analytics_GaData;
+use function GuzzleHttp\Promise\all;
 
 /**
  * Class GoogleAnalyticsService.
@@ -95,16 +97,13 @@ class GoogleAnalyticsService extends Google_Service_Analytics
      */
     protected function formatSimpleResponse($originalResponse): ConnectResponse
     {
-        $body = [];
-
-        foreach ($originalResponse as $key => $item) {
-            $body[$key]['id'] = $item->id;
-            $body[$key]['name'] = $item->name;
-        }
-
         return new ConnectResponse(
             [],
-            $body,
+            collect($originalResponse)->transform(function ($item, $key) {
+                $item[$key]['id'] = $item->id;
+                $item[$key]['name'] = $item->name;
+                return $item;
+            })->all(),
             $originalResponse
         );
     }
