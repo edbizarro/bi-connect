@@ -93,7 +93,7 @@ class GoogleAnalyticsService extends Google_Service_Analytics
      * @optOptions int start-index An index of the first entity to retrieve. Use this
      * parameter as a pagination mechanism along with the max-results parameter.
      *
-     * @return ConnectResponse
+     * @return Collection
      */
     public function query(
         string $gaId,
@@ -101,7 +101,7 @@ class GoogleAnalyticsService extends Google_Service_Analytics
         string $endDate,
         $metrics,
         array $optOptions = []
-    ): ConnectResponse {
+    ): Collection {
         $response = $this->data_ga->get(
             $this->formatQueryParams($gaId),
             $startDate,
