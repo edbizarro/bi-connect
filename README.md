@@ -7,6 +7,9 @@ Connect with 3rd party sources to get data.
 
 <p align="center">
     <a href="https://styleci.io/repos/123524313"><img src="https://styleci.io/repos/123524313/shield?branch=master" alt="StyleCI"></a>
+  <a href="https://packagist.org/packages/edbizarro/bi-connect"><img src="https://poser.pugx.org/edbizarro/bi-connect/v/stable.svg" alt="Latest Stable Version"></a>
+  <a href="https://packagist.org/packages/edbizarro/bi-connect"><img src="https://poser.pugx.org/edbizarro/bi-connect/license.svg" alt="License"></a>
+</p>
 </p>
 
 Supported sources:
