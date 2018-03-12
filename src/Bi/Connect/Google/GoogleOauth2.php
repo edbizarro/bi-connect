@@ -166,4 +166,16 @@ class GoogleOauth2 extends Oauth2Connect
     {
         return $this->googleClient->setAccessToken($token);
     }
+
+    /**
+     * @param $refreshToken
+     *
+     * @return array
+     */
+    public function refreshToken($refreshToken)
+    {
+        return $this->googleClient->refreshToken($refreshToken);
+    }
+
+
 }
