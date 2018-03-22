@@ -2,6 +2,7 @@
 
 namespace Bi\Connect\Facebook;
 
+use Facebook\Exceptions\FacebookSDKException;
 use Facebook\Facebook;
 use Bi\Connect\ConnectResponse;
 use Bi\Connect\Base\Oauth2Connect;
@@ -26,6 +27,8 @@ class FacebookConnect extends Oauth2Connect
      * FacebookConnect constructor.
      *
      * @param array $config
+     *
+     * @throws FacebookSDKException
      */
     public function __construct(array $config = [])
     {
@@ -65,19 +68,17 @@ class FacebookConnect extends Oauth2Connect
      *
      * @return array
      */
-    public function getAccess($code)
+    public function getAccess($code): array
     {
         try {
             $accessToken = $this->facebookClient->getRedirectLoginHelper()->getAccessToken();
 
             try {
                 $accessToken = $this->facebookClient->getOAuth2Client()->getLongLivedAccessToken($accessToken);
-            } catch (\Facebook\Exceptions\FacebookSDKException $e) {
+            } catch (FacebookSDKException $e) {
                 throw new FacebookException('Error getting long-lived access token:'.$e->getMessage());
             }
-        } catch (\Facebook\Exceptions\FacebookResponseException $e) {
-            throw new FacebookException('Graph returned an error: '.$e->getMessage());
-        } catch (\Facebook\Exceptions\FacebookSDKException $e) {
+        } catch (FacebookSDKException $e) {
             throw new FacebookException('Facebook SDK returned an error: '.$e->getMessage());
         }
 
@@ -91,7 +92,7 @@ class FacebookConnect extends Oauth2Connect
      *
      * @return string
      */
-    public function setAccessToken($token)
+    public function setAccessToken($token): string
     {
         return $this->facebookClient->setDefaultAccessToken($token);
     }
@@ -106,7 +107,7 @@ class FacebookConnect extends Oauth2Connect
      *
      * @return string
      */
-    public function getLoginUrl($scope = null, $display = null)
+    public function getLoginUrl($scope = null, $display = null): string
     {
         if ($scope != null) {
             $this->addScope($scope);
@@ -127,7 +128,7 @@ class FacebookConnect extends Oauth2Connect
     /**
      * @return Facebook
      */
-    public function getClient()
+    public function getClient(): Facebook
     {
         return $this->facebookClient;
     }
@@ -137,7 +138,7 @@ class FacebookConnect extends Oauth2Connect
      *
      * @return ConnectResponse
      */
-    protected function formatResponse($response)
+    protected function formatResponse($response): ConnectResponse
     {
         $body = $response;
 
