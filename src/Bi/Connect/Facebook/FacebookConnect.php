@@ -2,11 +2,11 @@
 
 namespace Bi\Connect\Facebook;
 
-use Facebook\Exceptions\FacebookSDKException;
 use Facebook\Facebook;
 use Bi\Connect\ConnectResponse;
 use Bi\Connect\Base\Oauth2Connect;
 use Bi\Connect\Exceptions\FacebookException;
+use Facebook\Exceptions\FacebookSDKException;
 
 /**
  * Class FacebookConnect.
