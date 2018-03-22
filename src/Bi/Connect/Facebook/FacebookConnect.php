@@ -66,12 +66,14 @@ class FacebookConnect extends Oauth2Connect
      *
      * @throws FacebookException
      *
-     * @return array
+     * @return object
      */
-    public function getAccess($code): array
+    public function getAccess($code): object
     {
         try {
-            $accessToken = $this->facebookClient->getRedirectLoginHelper()->getAccessToken();
+            $accessToken = $this->facebookClient
+                ->getRedirectLoginHelper()
+                ->getAccessToken($this->getRedirectUrl());
 
             try {
                 $accessToken = $this->facebookClient->getOAuth2Client()->getLongLivedAccessToken($accessToken);
@@ -81,7 +83,6 @@ class FacebookConnect extends Oauth2Connect
         } catch (FacebookSDKException $e) {
             throw new FacebookException('Facebook SDK returned an error: '.$e->getMessage());
         }
-
         return $accessToken;
     }
 
@@ -90,11 +91,10 @@ class FacebookConnect extends Oauth2Connect
      *
      * @param string $token
      *
-     * @return string
      */
-    public function setAccessToken($token): string
+    public function setAccessToken($token)
     {
-        return $this->facebookClient->setDefaultAccessToken($token);
+        $this->facebookClient->setDefaultAccessToken($token);
     }
 
     /**
