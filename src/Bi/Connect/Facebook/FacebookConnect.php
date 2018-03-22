@@ -54,7 +54,7 @@ class FacebookConnect extends Oauth2Connect
     /**
      * @return InstagramAdsService
      */
-    public function instagramAds()
+    public function instagramAds(): InstagramAdsService
     {
         return $this->instagramAds;
     }
