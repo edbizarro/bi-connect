@@ -83,6 +83,7 @@ class FacebookConnect extends Oauth2Connect
         } catch (FacebookSDKException $e) {
             throw new FacebookException('Facebook SDK returned an error: '.$e->getMessage());
         }
+
         return $accessToken;
     }
 
@@ -90,7 +91,6 @@ class FacebookConnect extends Oauth2Connect
      * Set the access token.
      *
      * @param string $token
-     *
      */
     public function setAccessToken($token)
     {
