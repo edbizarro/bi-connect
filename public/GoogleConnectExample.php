@@ -27,7 +27,6 @@ $googleConnect->setRedirectUrl('REDIRECT_URL');
 $googleConnect->forOffline();
 $googleConnect->forceApprove();
 
-
 echo '<h1> Login url </h1>';
 echo '<a href="'.$googleConnect->getLoginUrl().'"> Efetuar login com sua conta do google</a>';
 
