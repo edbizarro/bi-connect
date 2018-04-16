@@ -1,4 +1,3 @@
 preset: laravel
 disabled:
-  - self_accessor
   - single_class_element_per_statement  
