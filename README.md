@@ -7,10 +7,10 @@ Connect with 3rd party sources to get data.
 
   <a href="https://styleci.io/repos/126517642"><img src="https://styleci.io/repos/126517642/shield?branch=master" alt="StyleCI"></a>
   <a href="https://packagist.org/packages/edbizarro/bi-connect"><img src="https://poser.pugx.org/edbizarro/bi-connect/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://app.fossa.io/projects/git%2Bgithub.com%2Fedbizarro%2Fbi-connect?ref=badge_shield" alt="FOSSA Status"><img src="https://app.fossa.io/api/projects/git%2Bgithub.com%2Fedbizarro%2Fbi-connect.svg?type=shield"/></a>
   <a href="https://codeclimate.com/github/edbizarro/bi-connect/maintainability"><img src="https://api.codeclimate.com/v1/badges/ddf30fc607aa58ea232f/maintainability" /></a>
   <a class="badge-align" href="https://www.codacy.com/app/edbizarro/bi-connect?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=edbizarro/bi-connect&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/c79c2086e1614547bfa979c0004a6357"/></a>
   <a href="https://packagist.org/packages/edbizarro/bi-connect"><img src="https://poser.pugx.org/edbizarro/bi-connect/license.svg" alt="License"></a>
+  <a href="https://app.fossa.io/projects/git%2Bgithub.com%2Fedbizarro%2Fbi-connect?ref=badge_shield" alt="FOSSA Status"><img src="https://app.fossa.io/api/projects/git%2Bgithub.com%2Fedbizarro%2Fbi-connect.svg?type=small"/></a>
 </p>
 
 Supported sources:
@@ -47,9 +47,6 @@ After the OAuth2 flow you can access GA API
 $accounts = $googleConnect->analytics()->getAccounts();
 ```
 
-
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fedbizarro%2Fbi-connect.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fedbizarro%2Fbi-connect?ref=badge_large)
-
 ## Installation
 
 You can install the package via composer:
@@ -61,3 +58,7 @@ composer require edbizarro/bi-connect
 ---
 
 [![forthebadge](http://forthebadge.com/images/badges/contains-cat-gifs.svg)](http://forthebadge.com)
+
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fedbizarro%2Fbi-connect.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fedbizarro%2Fbi-connect?ref=badge_large)
