@@ -61,15 +61,7 @@ class FacebookAdsService
         return (new Campaign($accountId))->read($fields)->getData();
     }
 
-    /**
-     * @param $campaignId
-     *
-     * @return \Bi\Connect\Interfaces\ConnectResponseInterface
-     */
     public function insights($campaignId)
     {
-        $response = $this->doRequest('/'.$campaignId.'/insights', 'GET');
-
-        return $this->facebookConnect->response($response['data']);
     }
 }
