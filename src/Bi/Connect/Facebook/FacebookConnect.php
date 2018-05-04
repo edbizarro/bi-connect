@@ -2,11 +2,13 @@
 
 namespace Bi\Connect\Facebook;
 
+use Facebook\Authentication\AccessToken;
 use Facebook\Facebook;
 use Bi\Connect\ConnectResponse;
 use Bi\Connect\Base\Oauth2Connect;
 use Bi\Connect\Exceptions\FacebookException;
 use Facebook\Exceptions\FacebookSDKException;
+use FacebookAds\Api;
 
 /**
  * Class FacebookConnect.
@@ -33,22 +35,22 @@ class FacebookConnect extends Oauth2Connect
     public function __construct(array $config = [])
     {
         $config = array_merge([
-            'app_id'                         => '',
-            'app_secret'                     => '',
-            'default_graph_version'          => Facebook::DEFAULT_GRAPH_VERSION,
+            'default_graph_version'          => 'v3.0',
             'enable_beta_mode'               => false,
-            'http_client_handler'            => null,
-            'persistent_data_handler'        => null,
-            'pseudo_random_string_generator' => null,
-            'url_detection_handler'          => null,
         ], $config);
 
-        if (session_status() == PHP_SESSION_NONE) {
+        if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
 
         $this->facebookClient = new Facebook($config);
         $this->instagramAds = new InstagramAdsService($this);
+
+        Api::init(
+            $this->facebookClient->getApp()->getId(),
+            $this->facebookClient->getApp()->getSecret(),
+            $_SESSION['facebook_access_token']
+        );
     }
 
     /**
@@ -66,9 +68,9 @@ class FacebookConnect extends Oauth2Connect
      *
      * @throws FacebookException
      *
-     * @return object
+     * @return AccessToken
      */
-    public function getAccess($code): object
+    public function getAccess($code): AccessToken
     {
         try {
             $accessToken = $this->facebookClient
@@ -77,6 +79,7 @@ class FacebookConnect extends Oauth2Connect
 
             try {
                 $accessToken = $this->facebookClient->getOAuth2Client()->getLongLivedAccessToken($accessToken);
+                $this->facebookClient->setDefaultAccessToken($accessToken);
             } catch (FacebookSDKException $e) {
                 throw new FacebookException('Error getting long-lived access token:'.$e->getMessage());
             }
@@ -91,6 +94,8 @@ class FacebookConnect extends Oauth2Connect
      * Set the access token.
      *
      * @param string $token
+     *
+     * @throws \InvalidArgumentException
      */
     public function setAccessToken($token)
     {
@@ -131,28 +136,5 @@ class FacebookConnect extends Oauth2Connect
     public function getClient(): Facebook
     {
         return $this->facebookClient;
-    }
-
-    /**
-     * @param $response
-     *
-     * @return ConnectResponse
-     */
-    protected function formatResponse($response): ConnectResponse
-    {
-        $body = $response;
-
-        if (\is_array($body) == false) {
-            $body = json_decode($response, true);
-            if ((json_last_error() == JSON_ERROR_NONE) === false) {
-                $body = $response;
-            }
-        }
-
-        return new ConnectResponse(
-            [],
-            $body,
-            $response
-        );
     }
 }

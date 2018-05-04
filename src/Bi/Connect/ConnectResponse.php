@@ -25,7 +25,5 @@ class ConnectResponse implements ResponseInterface
         $this->header = new Collection($header);
         $this->body = new Collection($body);
         $this->rawBody = $rawBody;
-
-        return $this;
     }
 }

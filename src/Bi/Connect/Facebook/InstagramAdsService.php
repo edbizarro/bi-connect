@@ -3,6 +3,11 @@
 namespace Bi\Connect\Facebook;
 
 use Facebook\Facebook;
+use FacebookAds\Object\AdAccount;
+use FacebookAds\Object\AdAccountUser;
+use FacebookAds\Object\Campaign;
+use FacebookAds\Object\Fields\AdAccountFields;
+use FacebookAds\Object\Fields\CampaignFields;
 
 class InstagramAdsService
 {
@@ -23,68 +28,37 @@ class InstagramAdsService
     }
 
     /**
-     * @param $endPoint
-     * @param string $method
+     * @param string $accountUserId
      *
-     * @throws \Facebook\Exceptions\FacebookSDKException
+     * @return AdAccountUser
+     */
+    public function me($accountUserId = 'me')
+    {
+        return (new AdAccountUser())->setId($accountUserId);
+    }
+
+    /**
+     * @param string $accountUserId
      *
      * @return array
      */
-    protected function doRequest($endPoint, $method = 'GET')
+    public function getAccounts($accountUserId = 'me', $fields = [AdAccountFields::NAME])
     {
-        $request = new \Facebook\FacebookRequest(
-            $this->facebookClient->getApp(),
-            $this->facebookClient->getDefaultAccessToken(),
-            $method,
-            $endPoint
-        );
-        $response = $this->facebookClient->getClient()->sendRequest($request)->getDecodedBody();
-
-        return $response;
+        return $this->me($accountUserId)->getAdAccounts(
+            $fields
+        )->getArrayCopy();
     }
 
-    /**
-     * @param $endPoint
-     *
-     * @return string
-     */
-    public function get($endPoint)
-    {
-        return $this->facebookConnect->response($this->doRequest($endPoint, 'GET'));
-    }
-
-    /**
-     * @param $endPoint
-     *
-     * @return string
-     */
-    public function post($endPoint)
-    {
-        return $this->facebookConnect->response($this->doRequest($endPoint, 'POST'));
-    }
-
-    /**
-     * @param $userId
-     *
-     * @return \Bi\Connect\Interfaces\ConnectResponseInterface
-     */
-    public function getAccounts($userId)
-    {
-        $response = $this->doRequest('/'.$userId.'/adaccounts', 'GET');
-
-        return $this->facebookConnect->response($response['data']);
-    }
 
     /**
      * @param $accountId
+     * @param array $fields
      *
-     * @return \Bi\Connect\Interfaces\ConnectResponseInterface
+     * @return array
      */
-    public function getCampaigns($accountId)
+    public function getCampaigns($accountId, $fields = [CampaignFields::NAME])
     {
-        $response = $this->doRequest('/'.$accountId.'/campaigns', 'GET');
-
-        return $this->facebookConnect->response($response['data']);
+        return (new Campaign($accountId))->read($fields)->getData();
     }
 
     /**
