@@ -45,12 +45,6 @@ class FacebookConnect extends Oauth2Connect
 
         $this->facebookClient = new Facebook($config);
         $this->instagramAds = new InstagramAdsService($this);
-
-        Api::init(
-            $this->facebookClient->getApp()->getId(),
-            $this->facebookClient->getApp()->getSecret(),
-            $_SESSION['facebook_access_token']
-        );
     }
 
     /**
@@ -58,6 +52,12 @@ class FacebookConnect extends Oauth2Connect
      */
     public function instagramAds(): InstagramAdsService
     {
+        Api::init(
+            $this->facebookClient->getApp()->getId(),
+            $this->facebookClient->getApp()->getSecret(),
+            $this->facebookClient->getDefaultAccessToken()->getValue() ?? null
+        );
+
         return $this->instagramAds;
     }
 
