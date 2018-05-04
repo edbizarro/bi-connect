@@ -4,7 +4,6 @@ namespace Bi\Connect\Facebook;
 
 use Facebook\Authentication\AccessToken;
 use Facebook\Facebook;
-use Bi\Connect\ConnectResponse;
 use Bi\Connect\Base\Oauth2Connect;
 use Bi\Connect\Exceptions\FacebookException;
 use Facebook\Exceptions\FacebookSDKException;
@@ -16,9 +15,9 @@ use FacebookAds\Api;
 class FacebookConnect extends Oauth2Connect
 {
     /**
-     * @var InstagramAdsService
+     * @var FacebookAdsService
      */
-    protected $instagramAds;
+    protected $business;
 
     /**
      * @var Facebook
@@ -44,13 +43,13 @@ class FacebookConnect extends Oauth2Connect
         }
 
         $this->facebookClient = new Facebook($config);
-        $this->instagramAds = new InstagramAdsService($this);
+        $this->business = new FacebookAdsService($this);
     }
 
     /**
-     * @return InstagramAdsService
+     * @return FacebookAdsService
      */
-    public function instagramAds(): InstagramAdsService
+    public function business(): FacebookAdsService
     {
         Api::init(
             $this->facebookClient->getApp()->getId(),
@@ -58,7 +57,7 @@ class FacebookConnect extends Oauth2Connect
             $this->facebookClient->getDefaultAccessToken()->getValue() ?? null
         );
 
-        return $this->instagramAds;
+        return $this->business;
     }
 
     /**
