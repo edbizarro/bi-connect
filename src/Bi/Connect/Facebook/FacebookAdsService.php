@@ -9,7 +9,7 @@ use FacebookAds\Object\Campaign;
 use FacebookAds\Object\Fields\AdAccountFields;
 use FacebookAds\Object\Fields\CampaignFields;
 
-class InstagramAdsService
+class FacebookAdsService
 {
     /**
      * @var Facebook
