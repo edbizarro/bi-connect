@@ -2,12 +2,12 @@
 
 namespace Bi\Connect\Facebook;
 
-use Facebook\Authentication\AccessToken;
+use FacebookAds\Api;
 use Facebook\Facebook;
 use Bi\Connect\Base\Oauth2Connect;
+use Facebook\Authentication\AccessToken;
 use Bi\Connect\Exceptions\FacebookException;
 use Facebook\Exceptions\FacebookSDKException;
-use FacebookAds\Api;
 
 /**
  * Class FacebookConnect.
