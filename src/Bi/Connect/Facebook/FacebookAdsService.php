@@ -3,10 +3,10 @@
 namespace Bi\Connect\Facebook;
 
 use Facebook\Facebook;
-use FacebookAds\Object\AdAccountUser;
 use FacebookAds\Object\Campaign;
-use FacebookAds\Object\Fields\AdAccountFields;
+use FacebookAds\Object\AdAccountUser;
 use FacebookAds\Object\Fields\CampaignFields;
+use FacebookAds\Object\Fields\AdAccountFields;
 
 class FacebookAdsService
 {
@@ -49,7 +49,6 @@ class FacebookAdsService
             $fields
         )->getArrayCopy();
     }
-
 
     /**
      * @param $accountId
