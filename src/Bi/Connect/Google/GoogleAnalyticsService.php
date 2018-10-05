@@ -94,6 +94,7 @@ class GoogleAnalyticsService extends Google_Service_Analytics
      * parameter as a pagination mechanism along with the max-results parameter.
      *
      * @return Collection
+     * @throws \Google_Exception
      */
     public function query(
         string $gaId,
@@ -102,7 +103,7 @@ class GoogleAnalyticsService extends Google_Service_Analytics
         $metrics,
         array $optOptions = []
     ): Collection {
-        $response = $this->data_ga->get(
+        $result = $this->data_ga->get(
             $this->formatQueryParams($gaId),
             $startDate,
             $endDate,
@@ -110,7 +111,20 @@ class GoogleAnalyticsService extends Google_Service_Analytics
             $this->formatOptParams($optOptions)
         );
 
-        return $this->formatQueryResponse($response);
+        while ($nextLink = $result->getNextLink()) {
+            if (isset($others['max-results']) && count($result->rows) >= $optOptions['max-results']) {
+                break;
+            }
+            $options = [];
+            parse_str(substr($nextLink, strpos($nextLink, '?') + 1), $options);
+            $response = $this->data_ga->call('get', [$options], 'Google_Service_Analytics_GaData');
+            if ($response->rows) {
+                $result->rows = array_merge($result->rows, $response->rows);
+            }
+            $result->nextLink = $response->nextLink;
+        }
+
+        return $this->formatQueryResponse($result);
     }
 
     /**
