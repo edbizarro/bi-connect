@@ -72,7 +72,7 @@ class GoogleAnalyticsService extends Google_Service_Analytics
      * @param string $endDate End date for fetching Analytics data. Request can
      * should specify an end date formatted as YYYY-MM-DD, or as a relative date
      * (e.g., today, yesterday, or 7daysAgo). The default value is yesterday.
-     * @param string $metrics A comma-separated list of Analytics metrics. E.g.,
+     * @param string|array $metrics A comma-separated list of Analytics metrics. E.g.,
      * 'ga:sessions,ga:pageviews'. At least one metric must be specified.
      * @param array $optOptions Optional parameters.
      *
