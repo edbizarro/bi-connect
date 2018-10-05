@@ -122,11 +122,8 @@ class GoogleAnalyticsService extends Google_Service_Analytics
     {
         return (new ConnectResponse(
             [],
-            collect($originalResponse)->transform(function ($item, $key) {
-                $item[$key]['id'] = $item->id;
-                $item[$key]['name'] = $item->name;
-
-                return $item;
+            collect($originalResponse)->transform(function ($item) {
+                return [$item->id => $item->name];
             })->all(),
             $originalResponse
         ))->getBody();
