@@ -164,7 +164,6 @@ class GoogleOauth2 extends Oauth2Connect
         $this->googleClient->setState($state);
     }
 
-
     /**
      * @param string|array $token
      *
