@@ -9,7 +9,8 @@ use Bi\Connect\Base\Oauth2Connect;
  */
 class GoogleOauth2 extends Oauth2Connect
 {
-    const SCOPE_ANALYTICS = 'https://www.googleapis.com/auth/analytics.readonly';
+    const SCOPE_ANALYTICS = 'https://www.googleapis.com/auth/analytics';
+    const SCOPE_ANALYTICS_READ_ONLY = 'https://www.googleapis.com/auth/analytics.readonly';
     const SCOPE_BASE = 'https://www.google.com/base/feeds/';
     const SCOPE_BUZZ = 'https://www.googleapis.com/auth/buzz';
     const SCOPE_BOOK = 'https://www.google.com/books/feeds/';
@@ -40,6 +41,7 @@ class GoogleOauth2 extends Oauth2Connect
 
     protected $googleScopes = [
         'analytics'    => self::SCOPE_ANALYTICS,
+        'analytics.readonly' => self::SCOPE_ANALYTICS_READ_ONLY,
         'base'         => self::SCOPE_BASE,
         'buzz'         => self::SCOPE_BUZZ,
         'book'         => self::SCOPE_BOOK,
@@ -156,6 +158,12 @@ class GoogleOauth2 extends Oauth2Connect
     {
         $this->googleClient->setApprovalPrompt(self::FORCE);
     }
+
+    public function setState($state)
+    {
+        $this->googleClient->setState($state);
+    }
+
 
     /**
      * @param string|array $token
