@@ -16,7 +16,7 @@ Connect with 3rd party sources to get data.
 Supported sources:
 
 * Google Analytics
-* Adobe Analytics
+* Adobe Analytics (WIP)
 * Facebook Ads (WIP)
 * Instagram Ads (WIP)
 * Twitter (WIP)
