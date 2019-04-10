@@ -2,13 +2,13 @@
 
 namespace Bi\Connect;
 
-use Carbon\Carbon;
-use Bi\Connect\Base\BaseConnect;
 use AdobeMarketingCloud\Api\SuiteApi;
-use Tightenco\Collect\Support\Collection;
 use AdobeMarketingCloud\Client as AdobeClient;
-use Bi\Connect\Exceptions\AdobeConnectException;
 use AdobeMarketingCloud\HttpClient\Curl as AdobeCurl;
+use Bi\Connect\Base\BaseConnect;
+use Bi\Connect\Exceptions\AdobeConnectException;
+use Carbon\Carbon;
+use Tightenco\Collect\Support\Collection;
 
 /**
  * Class AdobeConnect.
@@ -33,8 +33,8 @@ class AdobeConnect extends BaseConnect
      */
     public function __construct($username, $password, $reportSuiteId)
     {
-        $this->apiUsername = $username;
-        $this->apiPassword = $password;
+        $this->apiUsername      = $username;
+        $this->apiPassword      = $password;
         $this->apiReportSuiteId = $reportSuiteId;
     }
 
@@ -83,13 +83,13 @@ class AdobeConnect extends BaseConnect
 
         $defaultOptions = [
             'reportDescription' => [
-                'reportSuiteID'   => $this->apiReportSuiteId,
-                'dateFrom'        => $dateFrom->format('Y-m-d'),
-                'dateTo'          => $dateTo->format('Y-m-d'),
+                'reportSuiteID' => $this->apiReportSuiteId,
+                'dateFrom' => $dateFrom->format('Y-m-d'),
+                'dateTo' => $dateTo->format('Y-m-d'),
                 'dateGranularity' => $granularity,
-                'metrics'         => $this->formatApiMetricsOptions($metrics),
-                'elements'        => $this->formatApiElementOptions($elements),
-                'segments'        => $this->formatApiSegmentsOptions($segments),
+                'metrics' => $this->formatApiMetricsOptions($metrics),
+                'elements' => $this->formatApiElementOptions($elements),
+                'segments' => $this->formatApiSegmentsOptions($segments),
             ],
         ];
 
@@ -148,11 +148,11 @@ class AdobeConnect extends BaseConnect
     protected function formatApiSegmentsOptions(array $option = [])
     {
         $formattedValue = [];
-        $iterator = 0;
+        $iterator       = 0;
         foreach ($option as $k => $item) {
             if (\is_array($item)) {
                 $formattedValue[$iterator]['id'] = $k;
-                $formattedValue[$iterator] = array_merge($formattedValue[$iterator], $item);
+                $formattedValue[$iterator]       = array_merge($formattedValue[$iterator], $item);
                 $iterator++;
                 continue;
             }
@@ -174,11 +174,11 @@ class AdobeConnect extends BaseConnect
     protected function formatApiElementOptions($option = [])
     {
         $formattedValue = [];
-        $iterator = 0;
+        $iterator       = 0;
         foreach ($option as $k => $item) {
             if (\is_array($item)) {
                 $formattedValue[$iterator]['id'] = $k;
-                $formattedValue[$iterator] = array_merge($formattedValue[$iterator], $item);
+                $formattedValue[$iterator]       = array_merge($formattedValue[$iterator], $item);
                 $iterator++;
                 continue;
             }
@@ -208,7 +208,7 @@ class AdobeConnect extends BaseConnect
         }
 
         $header = $this->formatResponseHeader($response['report']);
-        $body = $this->formatResponseBody($response['report']['data'], $header, $response);
+        $body   = $this->formatResponseBody($response['report']['data'], $header, $response);
 
         return new ConnectResponse(
             $header,
@@ -224,7 +224,7 @@ class AdobeConnect extends BaseConnect
      */
     protected function formatResponseHeader($response)
     {
-        $header = [];
+        $header  = [];
         $metrics = $response['metrics'];
 
         if (isset($response['segments'])) {
@@ -234,7 +234,7 @@ class AdobeConnect extends BaseConnect
         $elements = $response['elements'];
 
         $header['elements'] = $elements;
-        $header['metrics'] = $metrics;
+        $header['metrics']  = $metrics;
 
         return $header;
     }
@@ -249,7 +249,7 @@ class AdobeConnect extends BaseConnect
      */
     protected function formatResponseBody($response, $header, $fullResponse)
     {
-        $body = [];
+        $body    = [];
         $bodyKey = 0;
 
         foreach ($response as $responseKey => $responseRow) {
@@ -258,7 +258,7 @@ class AdobeConnect extends BaseConnect
             try {
                 if (strpos($responseRow['name'], '-') === false) {
                     $reportStartDate = new Carbon($responseRow['name']);
-                    $reportEndDate = new Carbon($responseRow['name']);
+                    $reportEndDate   = new Carbon($responseRow['name']);
 
                     /*
                      * If MONTH granularity
@@ -281,28 +281,28 @@ class AdobeConnect extends BaseConnect
                      */
                     if (count(explode(' ', $responseRow['name'])) > 2) {
                         $reportStartDate = new Carbon($responseRow['name']);
-                        $reportEndDate = new Carbon($responseRow['name']);
+                        $reportEndDate   = new Carbon($responseRow['name']);
                     }
                 }
 
                 if (strpos($responseRow['name'], '-') !== false) {
                     list($reportStartDate, $reportEndDate) = explode(' - ', $responseRow['name']);
-                    $reportStartDate = new Carbon($reportStartDate);
-                    $reportEndDate = new Carbon($reportEndDate);
+                    $reportStartDate                       = new Carbon($reportStartDate);
+                    $reportEndDate                         = new Carbon($reportEndDate);
                 }
 
                 $reportStartDate->startOfDay();
                 $reportEndDate->startOfDay();
 
                 $body[$bodyKey]['startDate'] = $reportStartDate;
-                $body[$bodyKey]['endDate'] = $reportEndDate;
+                $body[$bodyKey]['endDate']   = $reportEndDate;
             } catch (\Exception $e) {
                 throw new AdobeConnectException('Error parsing returned date interval from Adobe');
             }
 
             if (isset($responseRow['breakdown'])) {
                 $body[$bodyKey]['type'] = 'breakdown';
-                $metrics = $this->formatResponseBodyBreakdown(
+                $metrics                = $this->formatResponseBodyBreakdown(
                     $responseRow['breakdown'],
                     $header
                 );
@@ -315,7 +315,7 @@ class AdobeConnect extends BaseConnect
 
             if (! isset($responseRow['breakdown'])) {
                 $body[$bodyKey]['type'] = 'simple';
-                $metrics = $this->formatResponseBodyWithoutBreakdown(
+                $metrics                = $this->formatResponseBodyWithoutBreakdown(
                     $responseRow,
                     $header['metrics']
                 );
@@ -340,7 +340,7 @@ class AdobeConnect extends BaseConnect
      */
     protected function formatResponseBodyBreakdown($bodyBreakdown, $header, $level = 0)
     {
-        $body = [];
+        $body     = [];
         $elements = (new Collection($header['elements']))->pluck('id')->all();
 
         foreach ($bodyBreakdown as $itemKey => $item) {
@@ -452,8 +452,8 @@ class AdobeConnect extends BaseConnect
      */
     public function setCredentials($username, $password, $reportSuiteId)
     {
-        $this->apiUsername = $username;
-        $this->apiPassword = $password;
+        $this->apiUsername      = $username;
+        $this->apiPassword      = $password;
         $this->apiReportSuiteId = $reportSuiteId;
     }
 }

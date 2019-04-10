@@ -1,6 +1,6 @@
 <?php
 
-include dirname(__DIR__).'/vendor/autoload.php';
+include dirname(__DIR__) . '/vendor/autoload.php';
 
 use Bi\Connect\TailTargetConnect;
 
@@ -24,5 +24,5 @@ echo '<h1> Response campaignsByAccount</h1>';
 var_dump($response);
 
 if (is_null($response)) {
-    echo 'Error getting the report'.PHP_EOL;
+    echo 'Error getting the report' . PHP_EOL;
 }

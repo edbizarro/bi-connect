@@ -2,12 +2,12 @@
 
 namespace Bi\Connect\Facebook;
 
-use FacebookAds\Api;
-use Facebook\Facebook;
 use Bi\Connect\Base\Oauth2Connect;
-use Facebook\Authentication\AccessToken;
 use Bi\Connect\Exceptions\FacebookException;
+use Facebook\Authentication\AccessToken;
 use Facebook\Exceptions\FacebookSDKException;
+use Facebook\Facebook;
+use FacebookAds\Api;
 
 /**
  * Class FacebookConnect.
@@ -34,8 +34,8 @@ class FacebookConnect extends Oauth2Connect
     public function __construct(array $config = [])
     {
         $config = array_merge([
-            'default_graph_version'          => 'v3.0',
-            'enable_beta_mode'               => false,
+            'default_graph_version' => 'v3.0',
+            'enable_beta_mode' => false,
         ], $config);
 
         if (session_status() === PHP_SESSION_NONE) {
@@ -43,7 +43,7 @@ class FacebookConnect extends Oauth2Connect
         }
 
         $this->facebookClient = new Facebook($config);
-        $this->business = new FacebookAdsService($this);
+        $this->business       = new FacebookAdsService($this);
     }
 
     /**
@@ -80,10 +80,10 @@ class FacebookConnect extends Oauth2Connect
                 $accessToken = $this->facebookClient->getOAuth2Client()->getLongLivedAccessToken($accessToken);
                 $this->facebookClient->setDefaultAccessToken($accessToken);
             } catch (FacebookSDKException $e) {
-                throw new FacebookException('Error getting long-lived access token:'.$e->getMessage());
+                throw new FacebookException('Error getting long-lived access token:' . $e->getMessage());
             }
         } catch (FacebookSDKException $e) {
-            throw new FacebookException('Facebook SDK returned an error: '.$e->getMessage());
+            throw new FacebookException('Facebook SDK returned an error: ' . $e->getMessage());
         }
 
         return $accessToken;
