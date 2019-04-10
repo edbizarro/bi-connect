@@ -2,9 +2,9 @@
 
 namespace Bi\Connect;
 
-use Bi\Connect\Traits\GuzzleHttpClient;
 use Bi\Connect\Base\Oauth2WithoutRedirectConnect;
 use Bi\Connect\Exceptions\TwitterConnectException;
+use Bi\Connect\Traits\GuzzleHttpClient;
 
 /**
  * Class TwitterConnect.
@@ -13,7 +13,7 @@ class TwitterConnect extends Oauth2WithoutRedirectConnect
 {
     use GuzzleHttpClient;
 
-    const API_VERSION = '1.1';
+    const API_VERSION  = '1.1';
     const API_BASE_URL = 'https://api.twitter.com/';
 
     protected $apiConsumerKey;
@@ -28,7 +28,7 @@ class TwitterConnect extends Oauth2WithoutRedirectConnect
      */
     public function __construct($consumerKey, $consumerSecret)
     {
-        $this->apiConsumerKey = $consumerKey;
+        $this->apiConsumerKey    = $consumerKey;
         $this->apiConsumerSecret = $consumerSecret;
     }
 
@@ -46,7 +46,7 @@ class TwitterConnect extends Oauth2WithoutRedirectConnect
         $response = $this->post(
             'oauth2/token',
             ['grant_type' => 'client_credentials'],
-            ['auth'       => [$this->apiConsumerKey, $this->apiConsumerSecret]]
+            ['auth' => [$this->apiConsumerKey, $this->apiConsumerSecret]]
         );
 
         $this->apiBearerToken = $response->getBody()->all()['access_token'];
@@ -71,12 +71,12 @@ class TwitterConnect extends Oauth2WithoutRedirectConnect
         $defaultHeader = [
             'headers' => [
                 'Content-type' => 'application/x-www-form-urlencoded;charset=UTF-8',
-                'Accept'       => 'application/json',
+                'Accept' => 'application/json',
             ],
         ];
 
         if ($this->apiBearerToken != null) {
-            $defaultHeader['headers']['Authorization'] = 'Bearer '.$this->apiBearerToken;
+            $defaultHeader['headers']['Authorization'] = 'Bearer ' . $this->apiBearerToken;
         }
 
         $defaultHeader = array_merge($defaultHeader, $headers);
@@ -138,7 +138,7 @@ class TwitterConnect extends Oauth2WithoutRedirectConnect
      */
     protected function getBaseEndPoint()
     {
-        return self::API_BASE_URL.'/';
+        return self::API_BASE_URL . '/';
     }
 
     /**
@@ -146,7 +146,7 @@ class TwitterConnect extends Oauth2WithoutRedirectConnect
      */
     protected function getBaseEndPointWithVersion()
     {
-        return self::API_BASE_URL.self::API_VERSION.'/';
+        return self::API_BASE_URL . self::API_VERSION . '/';
     }
 
     /**
@@ -165,10 +165,10 @@ class TwitterConnect extends Oauth2WithoutRedirectConnect
     protected function formatEndPoint($endPoint)
     {
         if (strpos($endPoint, 'oauth2') === false) {
-            return $this->getBaseEndPointWithVersion().$endPoint;
+            return $this->getBaseEndPointWithVersion() . $endPoint;
         }
 
-        return $this->getBaseEndPoint().$endPoint;
+        return $this->getBaseEndPoint() . $endPoint;
     }
 
     /**
@@ -179,7 +179,7 @@ class TwitterConnect extends Oauth2WithoutRedirectConnect
     protected function formatResponse($response)
     {
         $header = $body = [];
-        $body = $rawBody = json_decode($response, true);
+        $body   = $rawBody   = json_decode($response, true);
 
         return new ConnectResponse(
             $header,

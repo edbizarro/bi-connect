@@ -1,6 +1,6 @@
 <?php
 
-include dirname(__DIR__).'/vendor/autoload.php';
+include dirname(__DIR__) . '/vendor/autoload.php';
 
 use Bi\Connect\TwitterConnect;
 
@@ -12,8 +12,8 @@ $twitterClient = new TwitterConnect(
 $accessTOken = $twitterClient->auth();
 
 $params = [
-    'screen_name'     => 'edbizarro',
-    'count'           => 1,
+    'screen_name' => 'edbizarro',
+    'count' => 1,
     'exclude_replies' => true,
 ];
 
@@ -23,5 +23,5 @@ echo "<h1> Ed Bizarro tweet's</h1>";
 dd($response->pull(0));
 
 if (is_null($response)) {
-    echo 'Error getting the report'.PHP_EOL;
+    echo 'Error getting the report' . PHP_EOL;
 }

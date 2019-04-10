@@ -7,34 +7,34 @@ namespace Bi\Connect\Base;
  */
 abstract class Oauth2Connect extends BaseConnect
 {
-    const CODE = 'code';
-    const TOKEN = 'token';
-    const ONLINE = 'online';
+    const CODE    = 'code';
+    const TOKEN   = 'token';
+    const ONLINE  = 'online';
     const OFFLINE = 'offline';
-    const AUTO = 'auto';
-    const FORCE = 'force';
-    const TYPE = 'Content-Type';
+    const AUTO    = 'auto';
+    const FORCE   = 'force';
+    const TYPE    = 'Content-Type';
     const REQUEST = 'application/x-www-form-urlencoded';
 
     const RESPONSE_TYPE = 'response_type';
-    const CLIENT_ID = 'client_id';
-    const REDIRECT_URL = 'redirect_uri';
-    const ACCESS_TYPE = 'access_type';
-    const APROVAL = 'approval_prompt';
+    const CLIENT_ID     = 'client_id';
+    const REDIRECT_URL  = 'redirect_uri';
+    const ACCESS_TYPE   = 'access_type';
+    const APROVAL       = 'approval_prompt';
     const CLIENT_SECRET = 'client_secret';
-    const GRANT_TYPE = 'grant_type';
+    const GRANT_TYPE    = 'grant_type';
     const AUTHORIZATION = 'authorization_code';
     const REFRESH_TOKEN = 'refresh_token';
 
-    protected $client = null;
-    protected $secret = null;
-    protected $scope = null;
-    protected $display = null;
-    protected $requestUrl = null;
-    protected $accessUrl = null;
+    protected $client      = null;
+    protected $secret      = null;
+    protected $scope       = null;
+    protected $display     = null;
+    protected $requestUrl  = null;
+    protected $accessUrl   = null;
     protected $redirectUrl = null;
 
-    protected $responseType = self::CODE;
+    protected $responseType   = self::CODE;
     protected $approvalPrompt = self::AUTO;
 
     /**
