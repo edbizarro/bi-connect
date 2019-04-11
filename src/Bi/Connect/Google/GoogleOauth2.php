@@ -104,12 +104,9 @@ class GoogleOauth2 extends Oauth2Connect
     /**
      * function for getting login url.
      *
-     * @param null $scope
-     * @param null $display
-     *
      * @return string
      */
-    public function getLoginUrl($scope = null, $display = null)
+    public function getLoginUrl()
     {
         $this->addScopesToClient();
 
