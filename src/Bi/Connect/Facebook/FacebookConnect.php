@@ -8,6 +8,7 @@ use Facebook\Authentication\AccessToken;
 use Facebook\Exceptions\FacebookSDKException;
 use Facebook\Facebook;
 use FacebookAds\Api;
+use InvalidArgumentException;
 
 /**
  * Class FacebookConnect.
@@ -25,6 +26,11 @@ class FacebookConnect extends Oauth2Connect
     protected $facebookClient;
 
     /**
+     * @var string
+     */
+    protected $apiVersion = 'v3.2';
+
+    /**
      * FacebookConnect constructor.
      *
      * @param array $config
@@ -34,7 +40,7 @@ class FacebookConnect extends Oauth2Connect
     public function __construct(array $config = [])
     {
         $config = array_merge([
-            'default_graph_version' => 'v3.0',
+            'default_graph_version' => $this->apiVersion,
             'enable_beta_mode' => false,
         ], $config);
 
@@ -49,19 +55,19 @@ class FacebookConnect extends Oauth2Connect
     /**
      * @return FacebookAdsService
      */
-    public function business(): FacebookAdsService
+    public function adsService(): FacebookAdsService
     {
         Api::init(
             $this->facebookClient->getApp()->getId(),
             $this->facebookClient->getApp()->getSecret(),
-            $this->facebookClient->getDefaultAccessToken()->getValue() ?? null
+            $this->facebookClient->getDefaultAccessToken()->getValue()
         );
 
         return $this->business;
     }
 
     /**
-     * Returns the access token.
+     * Returns a long-lived access token.
      *
      * @param string $code
      *
@@ -94,7 +100,7 @@ class FacebookConnect extends Oauth2Connect
      *
      * @param string $token
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function setAccessToken($token)
     {
@@ -102,7 +108,7 @@ class FacebookConnect extends Oauth2Connect
     }
 
     /**
-     * function for getting login url.
+     * Get login url.
      *
      * @param null $scope
      * @param null $display
@@ -113,7 +119,7 @@ class FacebookConnect extends Oauth2Connect
      */
     public function getLoginUrl($scope = null, $display = null): string
     {
-        if ($scope != null) {
+        if ($scope !== null) {
             $this->addScope($scope);
         }
 
