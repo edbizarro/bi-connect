@@ -2,9 +2,9 @@
 
 namespace Bi\Connect;
 
-use Bi\Connect\Interfaces\ResponseInterface;
 use Bi\Connect\Traits\ResponseTrait;
 use Tightenco\Collect\Support\Collection;
+use Bi\Connect\Interfaces\ResponseInterface;
 
 /**
  * Class ConnectResponse.
@@ -22,8 +22,8 @@ class ConnectResponse implements ResponseInterface
      */
     public function __construct(array $header, array $body, $rawBody)
     {
-        $this->header  = new Collection($header);
-        $this->body    = new Collection($body);
+        $this->header = new Collection($header);
+        $this->body = new Collection($body);
         $this->rawBody = $rawBody;
     }
 }

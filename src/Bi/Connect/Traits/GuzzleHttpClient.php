@@ -29,7 +29,7 @@ trait GuzzleHttpClient
                 $requestParams = ['form_params' => $params];
                 break;
             case 'post_json':
-                $method        = 'post';
+                $method = 'post';
                 $requestParams = ['json' => $params];
                 break;
             case 'get':
@@ -39,7 +39,7 @@ trait GuzzleHttpClient
         }
 
         $defaultHeader = [];
-        $headers       = array_merge($defaultHeader, $requestParams, $customHeaders);
+        $headers = array_merge($defaultHeader, $requestParams, $customHeaders);
 
         $response = $this->getHttpClient()->request(
             $method,
