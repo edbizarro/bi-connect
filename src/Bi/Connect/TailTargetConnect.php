@@ -34,11 +34,11 @@ class TailTargetConnect extends BaseConnect
     {
         $this->apiUsername = $username;
         $this->apiPassword = $password;
-        $this->apiAppId    = $appId;
-        $this->apiSecret   = $secret;
+        $this->apiAppId = $appId;
+        $this->apiSecret = $secret;
 
         $this->sha512Password = hash('sha512', $this->apiPassword);
-        $this->saltedSecret   = $this->sha512Password . $this->apiSecret;
+        $this->saltedSecret = $this->sha512Password.$this->apiSecret;
     }
 
     /**
@@ -71,7 +71,7 @@ class TailTargetConnect extends BaseConnect
         $hmac = $this->hmac($params);
 
         $response = $this->call(
-            self::API_BASE_URL . $endPoint . '?hmac=' . $hmac,
+            self::API_BASE_URL.$endPoint.'?hmac='.$hmac,
             'post_json',
             $params,
             $defaultHeader
@@ -88,8 +88,8 @@ class TailTargetConnect extends BaseConnect
      */
     public function setCredentials($username, $password, $appId, $secret)
     {
-        $this->apiAppId    = $appId;
-        $this->apiSecret   = $secret;
+        $this->apiAppId = $appId;
+        $this->apiSecret = $secret;
         $this->apiUsername = $username;
         $this->apiPassword = $password;
     }
@@ -104,7 +104,7 @@ class TailTargetConnect extends BaseConnect
     protected function hmac($params = [])
     {
         $postString = json_encode($params);
-        $hmac       = hash_hmac('sha1', $postString, $this->saltedSecret);
+        $hmac = hash_hmac('sha1', $postString, $this->saltedSecret);
 
         return $hmac;
     }
@@ -117,7 +117,7 @@ class TailTargetConnect extends BaseConnect
     protected function formatResponse($response)
     {
         $header = $body = [];
-        $body   = $rawBody   = json_decode($response, true);
+        $body = $rawBody = json_decode($response, true);
 
         return new ConnectResponse(
             $header,
