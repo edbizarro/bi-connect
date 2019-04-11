@@ -83,8 +83,11 @@ class FacebookConnect extends Oauth2Connect
                 ->getAccessToken($this->getRedirectUrl());
 
             try {
-                $accessToken = $this->facebookClient->getOAuth2Client()->getLongLivedAccessToken($accessToken);
-                $this->facebookClient->setDefaultAccessToken($accessToken);
+                if (! $accessToken->isLongLived()) {
+                    $accessToken = $this->facebookClient->getOAuth2Client()->getLongLivedAccessToken($accessToken);
+                    $this->facebookClient->setDefaultAccessToken($accessToken);
+                }
+
             } catch (FacebookSDKException $e) {
                 throw new FacebookException('Error getting long-lived access token:'.$e->getMessage());
             }
@@ -123,6 +126,17 @@ class FacebookConnect extends Oauth2Connect
             ->set('state', $state);
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getState()
+    {
+        return $this->facebookClient
+            ->getRedirectLoginHelper()
+            ->getPersistentDataHandler()
+            ->get('state');
     }
 
     /**
