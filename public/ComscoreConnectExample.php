@@ -1,6 +1,6 @@
 <?php
 
-include dirname(__DIR__) . '/vendor/autoload.php';
+include dirname(__DIR__).'/vendor/autoload.php';
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -8,7 +8,7 @@ ini_set('display_errors', 1);
 use Bi\Connect\ComscoreConnect;
 
 $sheet_location_server = '/examples/sheets';
-$valid_file            = false;
+$valid_file = false;
 if ($_FILES) {
     if ($_FILES['sheet']['name']) {
         if (! $_FILES['sheet']['error']) {
@@ -39,7 +39,7 @@ if ($_FILES) {
             die();
 
             if (is_null($response)) {
-                echo 'Error getting the report' . PHP_EOL;
+                echo 'Error getting the report'.PHP_EOL;
             }
         }
     }

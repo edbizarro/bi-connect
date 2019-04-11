@@ -2,8 +2,8 @@
 
 namespace Bi\Connect\Google;
 
-use Bi\Connect\Google\Auth\GoogleAuth;
 use Google_Client;
+use Bi\Connect\Google\Auth\GoogleAuth;
 
 /**
  * Class GoogleConnect.
