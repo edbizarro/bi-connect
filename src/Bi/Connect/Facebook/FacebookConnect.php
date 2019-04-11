@@ -108,6 +108,24 @@ class FacebookConnect extends Oauth2Connect
     }
 
     /**
+     * @param $state
+     * @return $this
+     */
+    public function setState($state): self
+    {
+        if (is_array($state)) {
+            $state = json_encode($state);
+        }
+
+        $this->facebookClient
+            ->getRedirectLoginHelper()
+            ->getPersistentDataHandler()
+            ->set('state', $state);
+
+        return $this;
+    }
+
+    /**
      * Get login url.
      *
      * @param null $scope
