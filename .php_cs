@@ -8,7 +8,7 @@ return PhpCsFixer\Config::create()
       'binary_operator_spaces' =>
       [
         'align_equals' => true,
-        'align_double_arrow' => NULL,
+        'align_double_arrow' => false,
       ],
       'blank_line_after_namespace' => true,
       'blank_line_after_opening_tag' => true,

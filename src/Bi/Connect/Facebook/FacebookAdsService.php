@@ -5,8 +5,8 @@ namespace Bi\Connect\Facebook;
 use Facebook\Facebook;
 use FacebookAds\Object\AdAccount;
 use FacebookAds\Object\AdAccountUser;
-use FacebookAds\Object\Fields\CampaignFields;
 use FacebookAds\Object\Fields\AdAccountFields;
+use FacebookAds\Object\Fields\CampaignFields;
 
 class FacebookAdsService
 {
@@ -22,7 +22,7 @@ class FacebookAdsService
 
     public function __construct(FacebookConnect $facebookConnect)
     {
-        $this->facebookClient = $facebookConnect->getClient();
+        $this->facebookClient  = $facebookConnect->getClient();
         $this->facebookConnect = $facebookConnect;
     }
 
