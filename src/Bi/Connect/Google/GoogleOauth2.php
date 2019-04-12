@@ -92,15 +92,6 @@ class GoogleOauth2 extends Oauth2Connect
     }
 
     /**
-     * @param string $url
-     *
-     */
-    public function setRedirectUrl($url): void
-    {
-        $this->googleClient->setRedirectUri($url);
-    }
-
-    /**
      * function for getting login url.
      *
      * @param array|null $scope
@@ -112,6 +103,7 @@ class GoogleOauth2 extends Oauth2Connect
             $this->setScope($scope);
         }
 
+        $this->googleClient->setRedirectUri($this->redirectUrl);
         $this->addScopesToClient();
 
         return $this->googleClient->createAuthUrl();
