@@ -57,9 +57,9 @@ abstract class Oauth2Connect extends BaseConnect
     /**
      * @param string $url
      *
-     * @return Oauth2Connect
+     * @return self
      */
-    public function setRedirectUrl($url): Oauth2Connect
+    public function setRedirectUrl($url): self
     {
         $this->redirectUrl = $url;
 
@@ -87,9 +87,9 @@ abstract class Oauth2Connect extends BaseConnect
      * Set scope.
      *
      * @param string|array
-     * @return Oauth2Connect
+     * @return self
      */
-    public function setScope($scope): Oauth2Connect
+    public function setScope($scope): self
     {
         $this->scope = $scope;
 
@@ -100,9 +100,9 @@ abstract class Oauth2Connect extends BaseConnect
      * Add scope.
      *
      * @param string|array
-     * @return Oauth2Connect
+     * @return self
      */
-    public function addScope($scope): Oauth2Connect
+    public function addScope($scope): self
     {
         $this->scope[] = $scope;
 
