@@ -16,6 +16,10 @@ trait ResponseTrait
      * @var \Tightenco\Collect\Support\Collection
      */
     protected $body;
+
+    /**
+     * @var
+     */
     protected $rawBody;
 
     /**

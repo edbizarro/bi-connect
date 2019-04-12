@@ -3,21 +3,20 @@
 namespace Bi\Connect\Google;
 
 use Bi\Connect\ConnectResponse;
-use Google_Service_Analytics;
 use Google_Service_Analytics_GaData;
 use Tightenco\Collect\Support\Collection;
 
 /**
  * Class GoogleAnalyticsService.
  */
-class GoogleAnalyticsService extends Google_Service_Analytics
+class GoogleAnalyticsService extends ConnectResponse
 {
     /**
      * @return Collection
      */
     public function getAccounts(): Collection
     {
-        return $this->formatSimpleResponse(
+        return $this->formatResponse(
             $this->management_accounts->listManagementAccounts()->getItems()
         );
     }
@@ -29,7 +28,7 @@ class GoogleAnalyticsService extends Google_Service_Analytics
      */
     public function getProperties($accountId = '~all'): Collection
     {
-        return $this->formatSimpleResponse(
+        return $this->formatResponse(
             $this->management_webproperties->listManagementWebproperties($accountId)->getItems()
         );
     }
@@ -42,7 +41,7 @@ class GoogleAnalyticsService extends Google_Service_Analytics
      */
     public function getProfiles($accountId = '~all', $propertyId = '~all'): Collection
     {
-        return $this->formatSimpleResponse(
+        return $this->formatResponse(
             $this->management_profiles->listManagementProfiles($accountId, $propertyId)->getItems()
         );
     }
@@ -56,7 +55,7 @@ class GoogleAnalyticsService extends Google_Service_Analytics
      */
     public function getGoals($accountId = '~all', $propertyId = '~all', $profileId = '~all'): Collection
     {
-        return $this->formatSimpleResponse(
+        return $this->formatResponse(
             $this->management_goals->listManagementGoals($accountId, $propertyId, $profileId)->getItems()
         );
     }
@@ -123,7 +122,7 @@ class GoogleAnalyticsService extends Google_Service_Analytics
             $response = $this->data_ga->call('get', [$options], 'Google_Service_Analytics_GaData');
 
             if ($response->rows) {
-                $result->rows = array_merge($result->rows, $response->rows);
+                $result->rows = \array_merge($result->rows, $response->rows);
             }
 
             $result->nextLink = $response->nextLink;
@@ -137,7 +136,7 @@ class GoogleAnalyticsService extends Google_Service_Analytics
      *
      * @return Collection
      */
-    protected function formatSimpleResponse($originalResponse): Collection
+    protected function formatResponse($originalResponse): Collection
     {
         return (new ConnectResponse(
             [],

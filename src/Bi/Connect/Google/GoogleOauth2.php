@@ -81,7 +81,7 @@ class GoogleOauth2 extends Oauth2Connect
      *
      * @param string $code
      *
-     * @return array
+     * @return mixed
      */
     public function getAccess($code)
     {
@@ -109,7 +109,7 @@ class GoogleOauth2 extends Oauth2Connect
     public function getLoginUrl($scope = null): string
     {
         if ($scope !== null) {
-            $this->scope = $scope;
+            $this->setScope($scope);
         }
 
         $this->addScopesToClient();
@@ -117,12 +117,12 @@ class GoogleOauth2 extends Oauth2Connect
         return $this->googleClient->createAuthUrl();
     }
 
-    protected function addScopesToClient()
+    protected function addScopesToClient(): void
     {
         if (is_string($this->scope) && isset($this->googleScopes[$this->scope])) {
             $this->googleClient->addScope($this->googleScopes[$this->scope]);
 
-            return true;
+            return;
         }
 
         if (\is_array($this->scope)) {
@@ -132,8 +132,6 @@ class GoogleOauth2 extends Oauth2Connect
                 }
             }
         }
-
-        return true;
     }
 
     /**

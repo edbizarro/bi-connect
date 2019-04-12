@@ -6,9 +6,6 @@ use Bi\Connect\Interfaces\ResponseInterface;
 use Bi\Connect\Traits\ResponseTrait;
 use Tightenco\Collect\Support\Collection;
 
-/**
- * Class ConnectResponse.
- */
 class ConnectResponse implements ResponseInterface
 {
     use ResponseTrait;
@@ -18,7 +15,7 @@ class ConnectResponse implements ResponseInterface
      *
      * @param array $header
      * @param array $body
-     * @param $rawBody
+     * @param mixed $rawBody
      */
     public function __construct(array $header, array $body, $rawBody)
     {

@@ -27,4 +27,11 @@ interface ResponseInterface
      * @return mixed
      */
     public function getRawResponse();
+
+    /**
+     * Format the response from sources.
+     *
+     * @return mixed
+     */
+    public function formatResponse();
 }
