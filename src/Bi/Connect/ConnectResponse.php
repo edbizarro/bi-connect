@@ -30,5 +30,5 @@ class ConnectResponse implements ResponseInterface
      * @param $originalResponse
      * @return mixed
      */
-    abstract public function formatResponse($originalResponse): Collection;
+    public function formatResponse($originalResponse): Collection {}
 }
