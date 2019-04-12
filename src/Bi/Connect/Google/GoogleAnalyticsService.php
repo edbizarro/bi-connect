@@ -9,7 +9,7 @@ use Tightenco\Collect\Support\Collection;
 /**
  * Class GoogleAnalyticsService.
  */
-class GoogleAnalyticsService extends ConnectResponse
+class GoogleAnalyticsService
 {
     /**
      * @return Collection

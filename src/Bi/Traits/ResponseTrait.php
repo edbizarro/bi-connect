@@ -2,6 +2,8 @@
 
 namespace Bi\Connect\Traits;
 
+use Tightenco\Collect\Support\Collection;
+
 /**
  * Class ResponseTrait.
  */
@@ -51,4 +53,12 @@ trait ResponseTrait
     {
         return $this->rawBody;
     }
+
+    /**
+     * Format the response from sources.
+     *
+     * @param $originalResponse
+     * @return mixed
+     */
+    public function formatResponse($originalResponse): Collection {}
 }

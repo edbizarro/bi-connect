@@ -23,12 +23,4 @@ class ConnectResponse implements ResponseInterface
         $this->body    = new Collection($body);
         $this->rawBody = $rawBody;
     }
-
-    /**
-     * Format the response from sources.
-     *
-     * @param $originalResponse
-     * @return mixed
-     */
-    public function formatResponse($originalResponse): Collection {}
 }
