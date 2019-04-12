@@ -94,9 +94,8 @@ class GoogleOauth2 extends Oauth2Connect
     /**
      * @param string $url
      *
-     * @return string
      */
-    public function setRedirectUrl($url)
+    public function setRedirectUrl($url): void
     {
         $this->googleClient->setRedirectUri($url);
     }
@@ -104,10 +103,15 @@ class GoogleOauth2 extends Oauth2Connect
     /**
      * function for getting login url.
      *
+     * @param array|null $scope
      * @return string
      */
-    public function getLoginUrl()
+    public function getLoginUrl($scope = null): string
     {
+        if ($scope !== null) {
+            $this->scope = $scope;
+        }
+
         $this->addScopesToClient();
 
         return $this->googleClient->createAuthUrl();
@@ -135,30 +139,38 @@ class GoogleOauth2 extends Oauth2Connect
     /**
      * Set auth for offline access.
      */
-    public function forOffline()
+    public function forOffline(): self
     {
         $this->googleClient->setAccessType(self::OFFLINE);
+
+        return $this;
     }
 
     /**
      * Set auth for online access.
      */
-    public function forOnline()
+    public function forOnline(): self
     {
         $this->googleClient->setAccessType(self::ONLINE);
+
+        return $this;
     }
 
     /**
      * Set auth for force approve.
      */
-    public function forceApprove()
+    public function forceApprove(): self
     {
         $this->googleClient->setApprovalPrompt(self::FORCE);
+
+        return $this;
     }
 
-    public function setState($state)
+    public function setState($state): self
     {
         $this->googleClient->setState($state);
+
+        return $this;
     }
 
     /**

@@ -142,13 +142,12 @@ class FacebookConnect extends Oauth2Connect
      * Get login url.
      *
      * @param null $scope
-     * @param null $display
      *
      * @throws FacebookException
      *
      * @return string
      */
-    public function getLoginUrl($scope = null, $display = null): string
+    public function getLoginUrl($scope = null): string
     {
         if ($scope !== null) {
             $this->addScope($scope);

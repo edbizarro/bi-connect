@@ -7,32 +7,32 @@ namespace Bi\Connect\Base;
  */
 abstract class Oauth2Connect extends BaseConnect
 {
-    const CODE    = 'code';
-    const TOKEN   = 'token';
-    const ONLINE  = 'online';
-    const OFFLINE = 'offline';
-    const AUTO    = 'auto';
-    const FORCE   = 'force';
-    const TYPE    = 'Content-Type';
-    const REQUEST = 'application/x-www-form-urlencoded';
+    public const CODE    = 'code';
+    public const TOKEN   = 'token';
+    public const ONLINE  = 'online';
+    public const OFFLINE = 'offline';
+    public const AUTO    = 'auto';
+    public const FORCE   = 'force';
+    public const TYPE    = 'Content-Type';
+    public const REQUEST = 'application/x-www-form-urlencoded';
 
-    const RESPONSE_TYPE = 'response_type';
-    const CLIENT_ID     = 'client_id';
-    const REDIRECT_URL  = 'redirect_uri';
-    const ACCESS_TYPE   = 'access_type';
-    const APROVAL       = 'approval_prompt';
-    const CLIENT_SECRET = 'client_secret';
-    const GRANT_TYPE    = 'grant_type';
-    const AUTHORIZATION = 'authorization_code';
-    const REFRESH_TOKEN = 'refresh_token';
+    public const RESPONSE_TYPE = 'response_type';
+    public const CLIENT_ID     = 'client_id';
+    public const REDIRECT_URL  = 'redirect_uri';
+    public const ACCESS_TYPE   = 'access_type';
+    public const APROVAL       = 'approval_prompt';
+    public const CLIENT_SECRET = 'client_secret';
+    public const GRANT_TYPE    = 'grant_type';
+    public const AUTHORIZATION = 'authorization_code';
+    public const REFRESH_TOKEN = 'refresh_token';
 
-    protected $client      = null;
-    protected $secret      = null;
-    protected $scope       = null;
-    protected $display     = null;
-    protected $requestUrl  = null;
-    protected $accessUrl   = null;
-    protected $redirectUrl = null;
+    protected $client;
+    protected $secret;
+    protected $scope;
+    protected $display;
+    protected $requestUrl;
+    protected $accessUrl;
+    protected $redirectUrl;
 
     protected $responseType   = self::CODE;
     protected $approvalPrompt = self::AUTO;
@@ -42,7 +42,6 @@ abstract class Oauth2Connect extends BaseConnect
      *
      * @param string $code
      *
-     * @return array
      */
     abstract public function getAccess($code);
 
@@ -58,7 +57,6 @@ abstract class Oauth2Connect extends BaseConnect
     /**
      * @param string $url
      *
-     * @return string
      */
     public function setRedirectUrl($url)
     {
@@ -68,7 +66,7 @@ abstract class Oauth2Connect extends BaseConnect
     /**
      * @return string
      */
-    public function getRedirectUrl()
+    public function getRedirectUrl(): string
     {
         return $this->redirectUrl;
     }
@@ -77,18 +75,18 @@ abstract class Oauth2Connect extends BaseConnect
      * abstract function for getting login url.
      *
      * @param null $scope
-     * @param null $display
      *
      * @return string
      */
-    abstract public function getLoginUrl($scope = null, $display = null);
+    abstract public function getLoginUrl($scope = null): string;
 
     /**
      * Set scope.
      *
      * @param string|array
+     * @return Oauth2Connect
      */
-    public function setScope($scope)
+    public function setScope($scope): self
     {
         $this->scope = $scope;
     }
@@ -97,8 +95,9 @@ abstract class Oauth2Connect extends BaseConnect
      * Add scope.
      *
      * @param string|array
+     * @return Oauth2Connect
      */
-    public function addScope($scope)
+    public function addScope($scope): self
     {
         $this->scope[] = $scope;
     }
