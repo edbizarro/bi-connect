@@ -2,6 +2,8 @@
 
 namespace Bi\Connect\Interfaces;
 
+use Tightenco\Collect\Support\Collection;
+
 /**
  * Interface ResponseInterface.
  */
@@ -31,7 +33,8 @@ interface ResponseInterface
     /**
      * Format the response from sources.
      *
+     * @param $originalResponse
      * @return mixed
      */
-    public function formatResponse();
+    public function formatResponse($originalResponse): Collection;
 }

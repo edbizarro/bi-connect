@@ -136,7 +136,7 @@ class GoogleAnalyticsService extends ConnectResponse
      *
      * @return Collection
      */
-    protected function formatResponse($originalResponse): Collection
+    public function formatResponse($originalResponse): Collection
     {
         return (new ConnectResponse(
             [],
