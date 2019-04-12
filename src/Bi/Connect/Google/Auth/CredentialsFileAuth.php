@@ -25,7 +25,7 @@ class CredentialsFileAuth implements GoogleAuth
     {
         $fileExists = file_exists($credentialsFile) ? $credentialsFile : false;
 
-        if ($fileExists == false) {
+        if ($fileExists === false) {
             throw new GoogleCredentialsException('Wrong credentials file path');
         }
 
