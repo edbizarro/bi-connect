@@ -63,17 +63,17 @@ class GoogleAnalyticsService
     /**
      * Returns Analytics data for a view (profile). (ga.get).
      *
-     * @param string $gaId Unique table ID for retrieving Analytics data. Table ID is
-     * of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
-     * @param string $startDate Start date for fetching Analytics data. Requests can
-     * specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g.,
-     * today, yesterday, or 7daysAgo). The default value is 7daysAgo.
-     * @param string $endDate End date for fetching Analytics data. Request can
-     * should specify an end date formatted as YYYY-MM-DD, or as a relative date
-     * (e.g., today, yesterday, or 7daysAgo). The default value is yesterday.
-     * @param string|array $metrics A comma-separated list of Analytics metrics. E.g.,
-     * 'ga:sessions,ga:pageviews'. At least one metric must be specified.
-     * @param array $optOptions Optional parameters.
+     * @param string       $gaId       Unique table ID for retrieving Analytics data. Table ID is
+     *                                 of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
+     * @param string       $startDate  Start date for fetching Analytics data. Requests can
+     *                                 specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g.,
+     *                                 today, yesterday, or 7daysAgo). The default value is 7daysAgo.
+     * @param string       $endDate    End date for fetching Analytics data. Request can
+     *                                 should specify an end date formatted as YYYY-MM-DD, or as a relative date
+     *                                 (e.g., today, yesterday, or 7daysAgo). The default value is yesterday.
+     * @param string|array $metrics    A comma-separated list of Analytics metrics. E.g.,
+     *                                 'ga:sessions,ga:pageviews'. At least one metric must be specified.
+     * @param array        $optOptions Optional parameters.
      *
      * @optOptions array dimensions A comma-separated list of Analytics dimensions.
      * E.g., 'browser,city'.
@@ -92,8 +92,9 @@ class GoogleAnalyticsService
      * @optOptions int start-index An index of the first entity to retrieve. Use this
      * parameter as a pagination mechanism along with the max-results parameter.
      *
-     * @return Collection
      * @throws \Google_Exception
+     *
+     * @return Collection
      */
     public function query(
         string $gaId,
@@ -177,7 +178,7 @@ class GoogleAnalyticsService
     protected function formatQueryParams($params = null): string
     {
         if (\is_array($params) === false) {
-            return 'ga:' . $params;
+            return 'ga:'.$params;
         }
 
         $formattedParams = [];
@@ -187,7 +188,7 @@ class GoogleAnalyticsService
                 $formattedParams[$k] = $param;
                 continue;
             }
-            $formattedParams[$k] = 'ga:' . $param;
+            $formattedParams[$k] = 'ga:'.$param;
         }
 
         return implode(',', $formattedParams);
@@ -204,7 +205,7 @@ class GoogleAnalyticsService
             if (\is_array($params['dimensions']) === false
                 && \strpos($params['dimensions'], 'ga:') === false
             ) {
-                $params['dimensions'] = 'ga:' . $params['dimensions'];
+                $params['dimensions'] = 'ga:'.$params['dimensions'];
             }
 
             if (\is_array($params['dimensions'])) {
@@ -213,7 +214,7 @@ class GoogleAnalyticsService
                         $params['dimensions'][$k] = $param;
                         continue;
                     }
-                    $params['dimensions'][$k] = 'ga:' . $param;
+                    $params['dimensions'][$k] = 'ga:'.$param;
                 }
                 $params['dimensions'] = implode(',', $params['dimensions']);
             }
@@ -229,7 +230,7 @@ class GoogleAnalyticsService
      */
     protected function extractHeaders($headers = []): array
     {
-        $originalHeaders  = $headers['columnHeaders'];
+        $originalHeaders = $headers['columnHeaders'];
         $formattedHeaders = [];
         foreach ($originalHeaders as $item) {
             $formattedHeaders[] = str_replace('ga:', '', $item['name']);
@@ -245,6 +246,6 @@ class GoogleAnalyticsService
      */
     public function formatQueryReturnDate($returnedDate): string
     {
-        return substr($returnedDate, 0, 4) . '-' . substr($returnedDate, 4, 2) . '-' . substr($returnedDate, 6, 2);
+        return substr($returnedDate, 0, 4).'-'.substr($returnedDate, 4, 2).'-'.substr($returnedDate, 6, 2);
     }
 }

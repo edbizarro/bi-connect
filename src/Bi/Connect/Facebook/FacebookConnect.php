@@ -41,7 +41,7 @@ class FacebookConnect extends Oauth2Connect
     {
         $config = array_merge([
             'default_graph_version' => $this->apiVersion,
-            'enable_beta_mode' => false,
+            'enable_beta_mode'      => false,
         ], $config);
 
         if (session_status() === PHP_SESSION_NONE) {
@@ -49,7 +49,7 @@ class FacebookConnect extends Oauth2Connect
         }
 
         $this->facebookClient = new Facebook($config);
-        $this->business       = new FacebookAdsService($this);
+        $this->business = new FacebookAdsService($this);
     }
 
     /**
@@ -83,15 +83,15 @@ class FacebookConnect extends Oauth2Connect
                 ->getAccessToken($this->getRedirectUrl());
 
             try {
-                if (! $accessToken->isLongLived()) {
+                if (!$accessToken->isLongLived()) {
                     $accessToken = $this->facebookClient->getOAuth2Client()->getLongLivedAccessToken($accessToken);
                     $this->facebookClient->setDefaultAccessToken($accessToken);
                 }
             } catch (FacebookSDKException $e) {
-                throw new FacebookException('Error getting long-lived access token:' . $e->getMessage());
+                throw new FacebookException('Error getting long-lived access token:'.$e->getMessage());
             }
         } catch (FacebookSDKException $e) {
-            throw new FacebookException('Facebook SDK returned an error: ' . $e->getMessage());
+            throw new FacebookException('Facebook SDK returned an error: '.$e->getMessage());
         }
 
         return $accessToken;
@@ -111,6 +111,7 @@ class FacebookConnect extends Oauth2Connect
 
     /**
      * @param $state
+     *
      * @return $this
      */
     public function setState($state): self
@@ -142,8 +143,10 @@ class FacebookConnect extends Oauth2Connect
      * Get login url.
      *
      * @param null $scope
-     * @return string
+     *
      * @throws FacebookException
+     *
+     * @return string
      */
     public function getLoginUrl($scope = null): string
     {

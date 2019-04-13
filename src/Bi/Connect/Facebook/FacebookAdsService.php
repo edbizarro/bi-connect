@@ -22,7 +22,7 @@ class FacebookAdsService
 
     public function __construct(FacebookConnect $facebookConnect)
     {
-        $this->facebookClient  = $facebookConnect->getClient();
+        $this->facebookClient = $facebookConnect->getClient();
         $this->facebookConnect = $facebookConnect;
     }
 
@@ -38,8 +38,7 @@ class FacebookAdsService
 
     /**
      * @param string $accountUserId
-     *
-     * @param array $fields
+     * @param array  $fields
      *
      * @return array
      */
@@ -58,7 +57,7 @@ class FacebookAdsService
      */
     public function getCampaigns($accountId, $fields = [CampaignFields::NAME])
     {
-        return (new AdAccount)->setId($accountId)->getCampaigns($fields);
+        return (new AdAccount())->setId($accountId)->getCampaigns($fields);
     }
 
     public function insights($campaignId)
