@@ -154,9 +154,11 @@ class FacebookConnect extends Oauth2Connect
             $this->addScope($scope);
         }
 
+        $this->validateScope();
+
         if ($this->getRedirectUrl() === null) {
             throw new FacebookException(
-                'You must provide a redirectUrl with setRedirectUrl() before calling this method'
+                'You must provide a redirectUrl with setRedirectUrl() before calling this method.'
             );
         }
 
@@ -172,5 +174,23 @@ class FacebookConnect extends Oauth2Connect
     public function getClient(): Facebook
     {
         return $this->facebookClient;
+    }
+
+    /**
+     * @throws FacebookException
+     */
+    protected function validateScope(): void
+    {
+        if (is_array($this->scope) && count($this->scope) === 0) {
+            throw new FacebookException(
+                'You must provide a scope to get a login URL.'
+            );
+        }
+
+        if ($this->scope === null) {
+            throw new FacebookException(
+                'You must provide a scope to get a login URL.'
+            );
+        }
     }
 }

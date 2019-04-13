@@ -66,9 +66,9 @@ abstract class Oauth2Connect extends BaseConnect
     }
 
     /**
-     * @return string
+     * @return string|null string
      */
-    public function getRedirectUrl(): string
+    public function getRedirectUrl(): ?string
     {
         return $this->redirectUrl;
     }
