@@ -3,6 +3,7 @@
 namespace Bi\Connect\Google;
 
 use Bi\Connect\Base\Oauth2Connect;
+use Bi\Connect\Exceptions\GoogleConnectException;
 
 /**
  * Class GoogleOauth2.
@@ -107,6 +108,14 @@ class GoogleOauth2 extends Oauth2Connect
         $this->googleClient->setRedirectUri($this->redirectUrl);
         $this->addScopesToClient();
 
+        if ($this->getRedirectUrl() === null) {
+            throw new GoogleConnectException(
+                'You must provide a redirectUrl with setRedirectUrl() before calling this method.'
+            );
+        }
+
+        $this->validateScope();
+
         return $this->googleClient->createAuthUrl();
     }
 
@@ -182,5 +191,23 @@ class GoogleOauth2 extends Oauth2Connect
     public function refreshToken($refreshToken)
     {
         return $this->googleClient->refreshToken($refreshToken);
+    }
+
+    /**
+     * @throws GoogleConnectException
+     */
+    protected function validateScope(): void
+    {
+        if (is_array($this->scope) && count($this->scope) === 0) {
+            throw new GoogleConnectException(
+                'You must provide a scope to get a login URL.'
+            );
+        }
+
+        if ($this->scope === null) {
+            throw new GoogleConnectException(
+                'You must provide a scope to get a login URL.'
+            );
+        }
     }
 }

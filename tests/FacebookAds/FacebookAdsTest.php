@@ -3,7 +3,7 @@
 namespace Edbizarro\BiConnect\Tests\FacebookAds;
 
 use Bi\Connect\Base\Oauth2Connect;
-use Bi\Connect\Exceptions\FacebookException;
+use Bi\Connect\Exceptions\FacebookConnectException;
 use Bi\Connect\Facebook\FacebookConnect;
 use PHPUnit\Framework\TestCase;
 
@@ -33,7 +33,7 @@ class FacebookAdsTest extends TestCase
     /** @test */
     public function it_cant_get_login_url_without_scope(): void
     {
-        $this->expectException(FacebookException::class);
+        $this->expectException(FacebookConnectException::class);
 
         $this->fbConnect->getLoginUrl();
     }
@@ -41,7 +41,7 @@ class FacebookAdsTest extends TestCase
     /** @test */
     public function it_cant_get_login_url_without_redirect(): void
     {
-        $this->expectException(FacebookException::class);
+        $this->expectException(FacebookConnectException::class);
 
         $this->fbConnect->addScope('analytics');
         $this->fbConnect->getLoginUrl();

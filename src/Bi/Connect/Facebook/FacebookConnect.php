@@ -3,7 +3,7 @@
 namespace Bi\Connect\Facebook;
 
 use Bi\Connect\Base\Oauth2Connect;
-use Bi\Connect\Exceptions\FacebookException;
+use Bi\Connect\Exceptions\FacebookConnectException;
 use Facebook\Authentication\AccessToken;
 use Facebook\Exceptions\FacebookSDKException;
 use Facebook\Facebook;
@@ -71,9 +71,9 @@ class FacebookConnect extends Oauth2Connect
      *
      * @param string $code
      *
-     * @throws FacebookException
-     *
      * @return AccessToken
+     * @throws FacebookConnectException
+     *
      */
     public function getAccess($code): AccessToken
     {
@@ -88,10 +88,10 @@ class FacebookConnect extends Oauth2Connect
                     $this->facebookClient->setDefaultAccessToken($accessToken);
                 }
             } catch (FacebookSDKException $e) {
-                throw new FacebookException('Error getting long-lived access token:'.$e->getMessage());
+                throw new FacebookConnectException('Error getting long-lived access token:'.$e->getMessage());
             }
         } catch (FacebookSDKException $e) {
-            throw new FacebookException('Facebook SDK returned an error: '.$e->getMessage());
+            throw new FacebookConnectException('Facebook SDK returned an error: '.$e->getMessage());
         }
 
         return $accessToken;
@@ -144,9 +144,9 @@ class FacebookConnect extends Oauth2Connect
      *
      * @param null $scope
      *
-     * @throws FacebookException
-     *
      * @return string
+     * @throws FacebookConnectException
+     *
      */
     public function getLoginUrl($scope = null): string
     {
@@ -157,7 +157,7 @@ class FacebookConnect extends Oauth2Connect
         $this->validateScope();
 
         if ($this->getRedirectUrl() === null) {
-            throw new FacebookException(
+            throw new FacebookConnectException(
                 'You must provide a redirectUrl with setRedirectUrl() before calling this method.'
             );
         }
@@ -177,18 +177,18 @@ class FacebookConnect extends Oauth2Connect
     }
 
     /**
-     * @throws FacebookException
+     * @throws FacebookConnectException
      */
     protected function validateScope(): void
     {
         if (is_array($this->scope) && count($this->scope) === 0) {
-            throw new FacebookException(
+            throw new FacebookConnectException(
                 'You must provide a scope to get a login URL.'
             );
         }
 
         if ($this->scope === null) {
-            throw new FacebookException(
+            throw new FacebookConnectException(
                 'You must provide a scope to get a login URL.'
             );
         }
