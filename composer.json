@@ -32,7 +32,7 @@
     "facebook/php-business-sdk": "^3.2",
     "google/apiclient": "^2.2",
     "guzzlehttp/guzzle": "~6.3",
-    "nesbot/carbon": "^1.23",
+    "nesbot/carbon": "^1.23 || ^2.0",
     "tightenco/collect": "^5.6 || ^5.7 || ^5.8"
   },
   "require-dev": {
