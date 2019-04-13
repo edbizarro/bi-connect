@@ -4,7 +4,7 @@
 Connect with 3rd party sources to get data.
 
 ---
-
+[![Build Status](https://semaphoreci.com/api/v1/edbizarro/bi-connect/branches/master/badge.svg)](https://semaphoreci.com/edbizarro/bi-connect)
 <a href="https://styleci.io/repos/126517642"><img src="https://styleci.io/repos/126517642/shield?branch=master" alt="StyleCI"></a>
 <a href="https://packagist.org/packages/edbizarro/bi-connect"><img src="https://poser.pugx.org/edbizarro/bi-connect/v/stable.svg" alt="Latest Stable Version"></a>
 <a href="https://codeclimate.com/github/edbizarro/bi-connect/maintainability"><img src="https://api.codeclimate.com/v1/badges/ddf30fc607aa58ea232f/maintainability" /></a>
