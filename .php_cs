@@ -12,6 +12,8 @@ return PhpCsFixer\Config::create()
     ])
     ->setFinder(
         PhpCsFixer\Finder::create()
+            ->append('src')
+            ->append('tests')
             ->exclude([
               'vendor',
               'node_modules',
