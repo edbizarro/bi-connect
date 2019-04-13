@@ -34,6 +34,7 @@ interface ResponseInterface
      * Format the response from sources.
      *
      * @param $originalResponse
+     *
      * @return mixed
      */
     public function formatResponse($originalResponse): Collection;
