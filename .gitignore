@@ -18,4 +18,6 @@ Thumbs.db
 public/config
 public/secret
 
-tests
+.phpunit.result.cache
+
+tests/credentials

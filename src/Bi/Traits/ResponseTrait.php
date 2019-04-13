@@ -60,5 +60,7 @@ trait ResponseTrait
      * @param $originalResponse
      * @return mixed
      */
-    public function formatResponse($originalResponse): Collection {}
+    public function formatResponse($originalResponse): Collection
+    {
+    }
 }

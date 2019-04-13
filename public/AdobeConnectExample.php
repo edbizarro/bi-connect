@@ -1,9 +1,9 @@
 <?php
 
-include dirname(__DIR__).'/vendor/autoload.php';
+include dirname(__DIR__) . '/vendor/autoload.php';
 
-use Carbon\Carbon;
 use Bi\Connect\AdobeConnect;
+use Carbon\Carbon;
 
 $adobe = new AdobeConnect(
     'username',
@@ -38,7 +38,7 @@ if (! is_null($reportId)) {
 }
 
 if (is_null($reportId)) {
-    echo 'Error getting the report'.PHP_EOL;
+    echo 'Error getting the report' . PHP_EOL;
 }
 
 echo '<h1> Metrics</h1>';

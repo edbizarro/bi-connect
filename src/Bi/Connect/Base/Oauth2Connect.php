@@ -41,7 +41,6 @@ abstract class Oauth2Connect extends BaseConnect
      * Returns the access token.
      *
      * @param string $code
-     *
      */
     abstract public function getAccess($code);
 
