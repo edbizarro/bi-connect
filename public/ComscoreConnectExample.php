@@ -29,7 +29,6 @@ if ($_FILES) {
             $params = [];
 
             $response = $comscore->getInfosByFile(
-
                 $_FILES['sheet'],
                 $params
             );

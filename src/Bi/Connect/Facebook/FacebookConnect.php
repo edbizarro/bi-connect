@@ -83,7 +83,7 @@ class FacebookConnect extends Oauth2Connect
                 ->getAccessToken($this->getRedirectUrl());
 
             try {
-                if (!$accessToken->isLongLived()) {
+                if (! $accessToken->isLongLived()) {
                     $accessToken = $this->facebookClient->getOAuth2Client()->getLongLivedAccessToken($accessToken);
                     $this->facebookClient->setDefaultAccessToken($accessToken);
                 }

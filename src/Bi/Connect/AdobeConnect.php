@@ -313,7 +313,7 @@ class AdobeConnect extends BaseConnect
                 );
             }
 
-            if (!isset($responseRow['breakdown'])) {
+            if (! isset($responseRow['breakdown'])) {
                 $body[$bodyKey]['type'] = 'simple';
                 $metrics = $this->formatResponseBodyWithoutBreakdown(
                     $responseRow,
@@ -357,7 +357,7 @@ class AdobeConnect extends BaseConnect
                 }
             }
 
-            if (!isset($item['breakdown'])) {
+            if (! isset($item['breakdown'])) {
                 $body[$elements[$level]][$itemKey]['name'] = $item['name'];
 
                 foreach ($header['metrics'] as $headerKey2 => $headerItem2) {
