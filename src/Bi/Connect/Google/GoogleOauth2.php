@@ -83,9 +83,19 @@ class GoogleOauth2 extends Oauth2Connect
      * @param string $code
      *
      * @return mixed
+     * @throws GoogleConnectException
      */
     public function getAccess($code)
     {
+        $this->googleClient->setRedirectUri($this->redirectUrl);
+        $this->addScopesToClient();
+
+        if ($this->getRedirectUrl() === null) {
+            throw new GoogleConnectException(
+                'You must provide a redirectUrl with setRedirectUrl() before calling this method.'
+            );
+        }
+
         $token = $this->googleClient->fetchAccessTokenWithAuthCode($code);
         $this->googleClient->setAccessToken($token);
 
