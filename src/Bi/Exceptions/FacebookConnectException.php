@@ -2,6 +2,8 @@
 
 namespace Bi\Connect\Exceptions;
 
-class FacebookConnectException extends \Exception
+use Exception;
+
+class FacebookConnectException extends Exception
 {
 }
