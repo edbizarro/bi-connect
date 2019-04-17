@@ -6,10 +6,7 @@ use Bi\Connect\ConnectResponse;
 use Google_Service_Analytics_GaData;
 use Tightenco\Collect\Support\Collection;
 
-/**
- * Class GoogleAnalyticsService.
- */
-class GoogleAnalyticsService
+class GoogleAnalyticsService extends \Google_Service_Analytics
 {
     /**
      * @return Collection
