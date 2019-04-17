@@ -90,11 +90,8 @@ class GoogleOauth2 extends Oauth2Connect
         $this->googleClient->setRedirectUri($this->redirectUrl);
         $this->addScopesToClient();
 
-        if ($this->getRedirectUrl() === null) {
-            throw new GoogleConnectException(
-                'You must provide a redirectUrl with setRedirectUrl() before calling this method.'
-            );
-        }
+        $this->validateRedirectUrl();
+        $this->validateScope();
 
         $token = $this->googleClient->fetchAccessTokenWithAuthCode($code);
         $this->googleClient->setAccessToken($token);
@@ -108,6 +105,7 @@ class GoogleOauth2 extends Oauth2Connect
      * @param array|null $scope
      *
      * @return string
+     * @throws GoogleConnectException
      */
     public function getLoginUrl($scope = null): string
     {
@@ -118,12 +116,9 @@ class GoogleOauth2 extends Oauth2Connect
         $this->googleClient->setRedirectUri($this->redirectUrl);
         $this->addScopesToClient();
 
-        if ($this->getRedirectUrl() === null) {
-            throw new GoogleConnectException(
-                'You must provide a redirectUrl with setRedirectUrl() before calling this method.'
-            );
-        }
 
+
+        $this->validateRedirectUrl();
         $this->validateScope();
 
         return $this->googleClient->createAuthUrl();
@@ -210,13 +205,25 @@ class GoogleOauth2 extends Oauth2Connect
     {
         if (is_array($this->scope) && count($this->scope) === 0) {
             throw new GoogleConnectException(
-                'You must provide a scope to get a login URL.'
+                'You must provide a scope.'
             );
         }
 
         if ($this->scope === null) {
             throw new GoogleConnectException(
-                'You must provide a scope to get a login URL.'
+                'You must provide a scope.'
+            );
+        }
+    }
+
+    /**
+     * @throws GoogleConnectException
+     */
+    protected function validateRedirectUrl(): void
+    {
+        if ($this->getRedirectUrl() === null) {
+            throw new GoogleConnectException(
+                'You must provide a redirectUrl with setRedirectUrl() before calling this method.'
             );
         }
     }
