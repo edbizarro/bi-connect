@@ -20,6 +20,12 @@ class GoogleConnect extends GoogleOauth2
      */
     protected $googleWebmastersService;
 
+
+    /**
+     * @var YoutubeService
+     */
+    protected $youtubeService;
+
     /**
      * GoogleConnect constructor.
      *
@@ -41,6 +47,10 @@ class GoogleConnect extends GoogleOauth2
             $this->googleWebmastersService = new GoogleWebmastersService($this->googleClient);
         }
 
+        if (($this->youtubeService instanceof YoutubeService) === false) {
+            $this->youtubeService = new YoutubeService($this->googleClient);
+        }
+
         $this->googleClient->setAuthConfig($authDriver->getCredentials());
     }
 
@@ -58,5 +68,13 @@ class GoogleConnect extends GoogleOauth2
     public function webmaster(): GoogleWebmastersService
     {
         return $this->googleWebmastersService;
+    }
+
+    /**
+     * @return YoutubeService
+     */
+    public function youtube(): YoutubeService
+    {
+        return $this->youtubeService;
     }
 }
