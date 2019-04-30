@@ -7,22 +7,22 @@ namespace Bi\Connect\Base;
  */
 abstract class Oauth2Connect extends BaseConnect
 {
-    public const CODE = 'code';
-    public const TOKEN = 'token';
-    public const ONLINE = 'online';
+    public const CODE    = 'code';
+    public const TOKEN   = 'token';
+    public const ONLINE  = 'online';
     public const OFFLINE = 'offline';
-    public const AUTO = 'auto';
-    public const FORCE = 'force';
-    public const TYPE = 'Content-Type';
+    public const AUTO    = 'auto';
+    public const FORCE   = 'force';
+    public const TYPE    = 'Content-Type';
     public const REQUEST = 'application/x-www-form-urlencoded';
 
     public const RESPONSE_TYPE = 'response_type';
-    public const CLIENT_ID = 'client_id';
-    public const REDIRECT_URL = 'redirect_uri';
-    public const ACCESS_TYPE = 'access_type';
-    public const APROVAL = 'approval_prompt';
+    public const CLIENT_ID     = 'client_id';
+    public const REDIRECT_URL  = 'redirect_uri';
+    public const ACCESS_TYPE   = 'access_type';
+    public const APROVAL       = 'approval_prompt';
     public const CLIENT_SECRET = 'client_secret';
-    public const GRANT_TYPE = 'grant_type';
+    public const GRANT_TYPE    = 'grant_type';
     public const AUTHORIZATION = 'authorization_code';
     public const REFRESH_TOKEN = 'refresh_token';
 
@@ -34,7 +34,7 @@ abstract class Oauth2Connect extends BaseConnect
     protected $accessUrl;
     protected $redirectUrl;
 
-    protected $responseType = self::CODE;
+    protected $responseType   = self::CODE;
     protected $approvalPrompt = self::AUTO;
 
     /**

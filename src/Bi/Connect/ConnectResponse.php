@@ -19,8 +19,8 @@ class ConnectResponse implements ResponseInterface
      */
     public function __construct(array $header, array $body, $rawBody)
     {
-        $this->header = new Collection($header);
-        $this->body = new Collection($body);
+        $this->header  = new Collection($header);
+        $this->body    = new Collection($body);
         $this->rawBody = $rawBody;
     }
 }

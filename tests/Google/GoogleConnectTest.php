@@ -21,7 +21,7 @@ class GoogleConnectTest extends TestCase
 
         $this->googleConnect = new GoogleConnect(
             new CredentialsFileAuth(
-                dirname(__DIR__).'/'.getenv('GOOGLE_CREDENTIALS')
+                dirname(__DIR__) . '/' . getenv('GOOGLE_CREDENTIALS')
             )
         );
     }

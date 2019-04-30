@@ -175,7 +175,7 @@ class GoogleAnalyticsService extends \Google_Service_Analytics
     protected function formatQueryParams($params = null): string
     {
         if (\is_array($params) === false) {
-            return 'ga:'.$params;
+            return 'ga:' . $params;
         }
 
         $formattedParams = [];
@@ -185,7 +185,7 @@ class GoogleAnalyticsService extends \Google_Service_Analytics
                 $formattedParams[$k] = $param;
                 continue;
             }
-            $formattedParams[$k] = 'ga:'.$param;
+            $formattedParams[$k] = 'ga:' . $param;
         }
 
         return implode(',', $formattedParams);
@@ -202,7 +202,7 @@ class GoogleAnalyticsService extends \Google_Service_Analytics
             if (\is_array($params['dimensions']) === false
                 && \strpos($params['dimensions'], 'ga:') === false
             ) {
-                $params['dimensions'] = 'ga:'.$params['dimensions'];
+                $params['dimensions'] = 'ga:' . $params['dimensions'];
             }
 
             if (\is_array($params['dimensions'])) {
@@ -211,7 +211,7 @@ class GoogleAnalyticsService extends \Google_Service_Analytics
                         $params['dimensions'][$k] = $param;
                         continue;
                     }
-                    $params['dimensions'][$k] = 'ga:'.$param;
+                    $params['dimensions'][$k] = 'ga:' . $param;
                 }
                 $params['dimensions'] = implode(',', $params['dimensions']);
             }
@@ -227,7 +227,7 @@ class GoogleAnalyticsService extends \Google_Service_Analytics
      */
     protected function extractHeaders($headers = []): array
     {
-        $originalHeaders = $headers['columnHeaders'];
+        $originalHeaders  = $headers['columnHeaders'];
         $formattedHeaders = [];
         foreach ($originalHeaders as $item) {
             $formattedHeaders[] = str_replace('ga:', '', $item['name']);
@@ -243,6 +243,6 @@ class GoogleAnalyticsService extends \Google_Service_Analytics
      */
     public function formatQueryReturnDate($returnedDate): string
     {
-        return substr($returnedDate, 0, 4).'-'.substr($returnedDate, 4, 2).'-'.substr($returnedDate, 6, 2);
+        return substr($returnedDate, 0, 4) . '-' . substr($returnedDate, 4, 2) . '-' . substr($returnedDate, 6, 2);
     }
 }

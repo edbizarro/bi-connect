@@ -41,7 +41,7 @@ class FacebookConnect extends Oauth2Connect
     {
         $config = array_merge([
             'default_graph_version' => $this->apiVersion,
-            'enable_beta_mode'      => false,
+            'enable_beta_mode' => false,
         ], $config);
 
         if (session_status() === PHP_SESSION_NONE) {
@@ -49,7 +49,7 @@ class FacebookConnect extends Oauth2Connect
         }
 
         $this->facebookClient = new Facebook($config);
-        $this->business = new FacebookAdsService($this);
+        $this->business       = new FacebookAdsService($this);
     }
 
     /**
@@ -73,7 +73,6 @@ class FacebookConnect extends Oauth2Connect
      *
      * @return AccessToken
      * @throws FacebookConnectException
-     *
      */
     public function getAccess($code): AccessToken
     {
@@ -88,10 +87,10 @@ class FacebookConnect extends Oauth2Connect
                     $this->facebookClient->setDefaultAccessToken($accessToken);
                 }
             } catch (FacebookSDKException $e) {
-                throw new FacebookConnectException('Error getting long-lived access token:'.$e->getMessage());
+                throw new FacebookConnectException('Error getting long-lived access token:' . $e->getMessage());
             }
         } catch (FacebookSDKException $e) {
-            throw new FacebookConnectException('Facebook SDK returned an error: '.$e->getMessage());
+            throw new FacebookConnectException('Facebook SDK returned an error: ' . $e->getMessage());
         }
 
         return $accessToken;
@@ -146,7 +145,6 @@ class FacebookConnect extends Oauth2Connect
      *
      * @return string
      * @throws FacebookConnectException
-     *
      */
     public function getLoginUrl($scope = null): string
     {

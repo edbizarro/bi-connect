@@ -22,7 +22,7 @@ class FacebookAdsService
 
     public function __construct(FacebookConnect $facebookConnect)
     {
-        $this->facebookClient = $facebookConnect->getClient();
+        $this->facebookClient  = $facebookConnect->getClient();
         $this->facebookConnect = $facebookConnect;
     }
 
