@@ -54,6 +54,12 @@ abstract class Oauth2Connect extends BaseConnect
     abstract public function setAccessToken($token);
 
     /**
+     * @param $state
+     * @return mixed
+     */
+    abstract public function setState($state);
+
+    /**
      * @param string $url
      *
      * @return self
