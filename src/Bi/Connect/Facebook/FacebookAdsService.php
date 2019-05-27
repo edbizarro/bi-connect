@@ -4,7 +4,7 @@ namespace Bi\Connect\Facebook;
 
 use Facebook\Facebook;
 use FacebookAds\Object\AdAccount;
-use FacebookAds\Object\AdAccountUser;
+use FacebookAds\Object\User;
 use FacebookAds\Object\Fields\AdAccountFields;
 use FacebookAds\Object\Fields\CampaignFields;
 
@@ -29,11 +29,11 @@ class FacebookAdsService
     /**
      * @param string $accountUserId
      *
-     * @return AdAccountUser
+     * @return User
      */
-    public function me($accountUserId = 'me'): AdAccountUser
+    public function me($accountUserId = 'me'): User
     {
-        return (new AdAccountUser())->setId($accountUserId);
+        return (new User())->setId($accountUserId);
     }
 
     /**
