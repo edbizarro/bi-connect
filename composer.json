@@ -32,7 +32,7 @@
     "facebook/graph-sdk": "~5.7",
     "facebook/php-business-sdk": "^3.2",
     "google/apiclient": "^2.2",
-    "googleads/googleads-php-lib": "^41.0",
+    "googleads/googleads-php-lib": "^41.0 || ^42.0",
     "guzzlehttp/guzzle": "~6.3",
     "nesbot/carbon": "^1.23 || ^2.0",
     "tightenco/collect": "^5.6 || ^5.7 || ^5.8"
