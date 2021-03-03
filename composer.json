@@ -30,7 +30,7 @@
     "ext-json": "*",
     "adobe-marketing-cloud/marketing-cloud-php-sdk": "^2.1",
     "facebook/graph-sdk": "~5.7",
-    "facebook/php-business-sdk": "^3.2 || ^4.0 || ^5.0 || ^6.0",
+    "facebook/php-business-sdk": "^3.2 || ^4.0 || ^5.0 || ^6.0 || ^10.0",
     "google/apiclient": "^2.2",
     "googleads/googleads-php-lib": "^41.0 || ^42.0 || ^43.0 || ^46.0",
     "guzzlehttp/guzzle": "~6.3",
